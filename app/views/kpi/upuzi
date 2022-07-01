@@ -1,0 +1,96 @@
+<% @mrrs.map do |app| %>
+          <tr class="20_px_height">
+            <% app.map do |m| %>
+              <% m.last.each_with_index.map do |metric, index| %>
+                <td width="150" >
+                  <span style="color: <%= if metric.amount > metric[index - 1].amount
+                                            "#198754"
+                                          elsif metric.amount > metric[index - 1].amount
+                                            "#FF0000"
+                                          else
+                                            "#333333"
+                                          end %>;">
+                    $<%= number_with_precision(metric.amount, precision: 2, delimiter: ",") || "--" %>
+                  </span>
+                </td>
+              <% end %>
+            <% end %>
+          </tr>
+          <tr class="20_px_height">
+            <% app.each_with_index.map do |metric, index| %>
+              <td width="150" >
+                <span style="color: <%= if metric.trial > metric[index - 1].trial
+                                            "#198754"
+                                          elsif metric.trial > metric[index - 1].trial
+                                            "#FF0000"
+                                          else
+                                            "#333333"
+                                          end %>;">
+                  $<%= number_with_precision(metric.trial, precision: 2, delimiter: ",") || "--" %>
+                </span>
+              </td>
+            <% end %>
+          </tr>
+          <tr class="20_px_height" style="background: #e8fcee; ">
+            <% app.each_with_index.map do |metric, index| %>
+              <td width="150" style="border-bottom: 2px solid #000000;">
+                <span style="color: <%= if metric.net_revenue > metric[index - 1].net_revenue
+                                            "#198754"
+                                          elsif metric.net_revenue > metric[index - 1].net_revenue
+                                            "#FF0000"
+                                          else
+                                            "#333333"
+                                          end %>;">
+                  $<%= number_with_precision(metric.net_revenue, precision: 2, delimiter: ",") || "--" %>
+                </span>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+
+
+
+<table class="table table-bordered" style="table-layout:fixed; width: 320px !important">
+      <thead>
+        <tr class="20_px_height">
+          <th style="background: #9B81DD; color: #ffffff;" width="110" >14 days ago</th>
+          <th style="background: #8ECF3E; color: #ffffff;" width="110" >30 days ago</th>
+          <th style="background: #FC9212; color: #ffffff;" width="110" >90 days ago</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% App.order(created_at: :ASC).map do |app| %>
+          <tr class="20_px_height">
+            <td style="background: #9B81DD; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 14, app.id)["amount"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #8ECF3E; color: #ffffff;" width="110" ><%= number_with_precision(DailyMrr.mrr_on(Date.today - 30, app.id)["amount"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #FC9212; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 90, app.id)["amount"].to_f, precision: 2, delimiter: ",") %></td>
+          </tr>
+          <tr class="20_px_height">
+            <td style="background: #9B81DD; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 14, app.id)["trial"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #8ECF3E; color: #ffffff;" width="110" ><%= number_with_precision(DailyMrr.mrr_on(Date.today - 30, app.id)["trial"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #FC9212; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 90, app.id)["trial"].to_f, precision: 2, delimiter: ",") %></td>
+          </tr>
+          <tr class="20_px_height">
+            <td style="background: #9B81DD; color: #ffffff; font-weight: 600; font-size: 16px; border-bottom: 2px solid #000000;" width="110" >$<%= number_with_precision(Metric.net_revenue_on(Date.today - 14, app.id).to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #8ECF3E; color: #ffffff; font-weight: 600; font-size: 16px; border-bottom: 2px solid #000000;" width="110" ><%= number_with_precision(Metric.net_revenue_on(Date.today - 30, app.id).to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #FC9212; color: #ffffff; font-weight: 600; font-size: 16px; border-bottom: 2px solid #000000;" width="110" >$<%= number_with_precision(Metric.net_revenue_on(Date.today - 90, app.id).to_f, precision: 2, delimiter: ",") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

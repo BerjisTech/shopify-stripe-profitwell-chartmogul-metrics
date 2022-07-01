@@ -1,0 +1,40 @@
+<% colors = ["#EE9310", "#8ECF3E", "#172233", "#EA4C89", "#65D5F2", "#404ECF", "#9B81DD", "#661F50", "#93C3FB", "#A3E7EB", "#5DD4CB", "#65264E"] %>
+<span class="monthly_summary_title">Monthly Summary</span>
+
+<div id="line-chart-demo" class="morrischart" style="height: 300px; width: 100%;"></div>
+
+<script>
+  jQuery(document).ready(($) => {
+    var line_chart_demo = $("#line-chart-demo");
+    var line_chart = Morris.Bar({
+        element: 'line-chart-demo',
+        data: [
+            <% @fund_mrr_data.mrr.each_with_index.map do |mrr, index| %>
+                {
+                    y: "<%= mrr.date.strftime("%Y-%m-%d") %>",
+                    <% @fund_mrr_data.apps.each_with_index.map do |app, index| %>
+                      <% letter = AppGroup.letters[index] %>
+                      <%= letter %>: <%= mrr[letter].round(2) %>,
+                    <% end %>
+                },
+            <% end %>
+        ],
+        xkey: 'y',
+        ykeys: [
+          <% @fund_mrr_data.apps.each_with_index.map do |app, index| %>
+            <% letter = AppGroup.letters[index] %>
+            '<%= letter %>',
+          <% end %>
+        ],
+        labels: [
+          <% @fund_mrr_data.apps.each_with_index.map do |app, index| %>
+            '<%= app.app_name %>',
+          <% end %>
+        ],
+        barColors: ['#404ECF', '#93C3FB', '#A3E7EB', '#5DD4CB', '#65264E', '#EA4C89', '#404ECF', '#EE8A02', '#56C0C8', '#5F1F4E', '#9D81DD', '#58A1F0', '#EA4C89', '#65D5F2'],
+        redraw: true,
+        stacked: true
+    });
+    line_chart_demo.parent().attr('style', '');
+  })
+</script>

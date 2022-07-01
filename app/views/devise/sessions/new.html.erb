@@ -1,0 +1,31 @@
+<div class="row login-page-row">
+  <div class="col-sm-6 hidden-xs login-page-empty">
+    <img src="https://assets.ltvsaasgrowth.com/images/5cbf852e9172ce00235e92ab_optimized.png">
+  </div>
+  <div class="col-sm-6 login-form-column">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field col my-3">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Email" %>
+      </div>
+
+      <div class="field col my-3">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder: "Password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field form-group">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn btn-primary btn-md" %>
+      </div>
+      <hr />
+      <%= render "devise/shared/links" %>
+    <% end %>
+  </div>
+</div>

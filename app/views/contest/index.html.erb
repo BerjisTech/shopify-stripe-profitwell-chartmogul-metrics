@@ -1,0 +1,4 @@
+<% if Account.contest_manager(current_user.id) %>
+<%= render "contest/only_admins/forms/contest_price" %>
+<% end %>
+<%= render "contest/all/contest_table" %>

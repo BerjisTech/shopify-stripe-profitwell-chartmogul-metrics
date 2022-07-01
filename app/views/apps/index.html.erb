@@ -1,0 +1,39 @@
+<h1>Apps</h1>
+
+<table class="table table-responsive table-hover">
+  <thead class="table-dark bg-dark">
+    <tr>
+      <th>App name</th>
+      <th>Code</th>
+      <th>Partner</th>
+      <th>Api key</th>
+      <th>Secondary api key</th>
+      <th>Collection</th>
+      <th >Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @apps.each do |app| %>
+      <tr onclick="window.location.href='<%= app_path(app.id) %>'" style="cursor: pointer;">
+        <td><%= app.app_name %></td>
+        <td><%= app.app_code %></td>
+        <td><%= app.partner_id %></td>
+        <td><%= app.api_key %></td>
+        <td><%= app.secondary_api_key %></td>
+        <td><%= link_to app.group_name, app_group_path(app.app_group_id), style: "text-decoration: none;" %></td>
+        <td>
+          <%= link_to "visibility", app, class: "material-icons", style: "text-decoration: none; font-size: 18px;" %>
+          <% if current_user.id == 1 %>
+            <%= link_to "edit", edit_app_path(app), class: "material-icons text-success mx-3", style: "text-decoration: none; font-size: 18px;" %>
+          <% end %>
+          <!--%= link_to "delete", app, method: :delete, data: { confirm: "Are you sure?" }, class: "material-icons text-danger", style: "text-decoration: none; font-size: 18px;" %-->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New App", new_app_path %>

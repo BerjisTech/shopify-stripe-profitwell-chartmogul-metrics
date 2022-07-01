@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task: MyText
+  assigned_to: 
+  assigned_by: 
+  deadline: 2021-10-13 10:59:19
+
+two:
+  task: MyText
+  assigned_to: 
+  assigned_by: 
+  deadline: 2021-10-13 10:59:19

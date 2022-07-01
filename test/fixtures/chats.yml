@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  chat_link: MyText
+  date: 2021-10-24 18:08:23
+  comment: MyText
+
+two:
+  user_id: 
+  chat_link: MyText
+  date: 2021-10-24 18:08:23
+  comment: MyText

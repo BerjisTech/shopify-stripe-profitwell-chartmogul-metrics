@@ -1,0 +1,29 @@
+
+
+<p>
+  <strong>App:</strong>
+  <%= @call.app_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @call.user_id %>
+</p>
+
+<p>
+  <strong>Ticket:</strong>
+  <%= @call.ticket %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @call.comment %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @call.date %>
+</p>
+
+<%= link_to "Edit", edit_call_path(@call) %> |
+<%= link_to "Back", calls_path %>

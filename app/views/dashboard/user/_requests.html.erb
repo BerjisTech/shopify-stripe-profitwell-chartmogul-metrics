@@ -1,0 +1,28 @@
+<div class="my_requests">
+  <span class="my_requests_title">My Pending Requests</span>
+
+  <% if @my_requests.empty? %>
+    <div class="request_block">
+      <%= Request.provided(1).html_safe %>
+      <span>
+        You have no pending requests<br />
+      </span>
+    </div>
+  <% end %>
+
+  <% @my_requests.map do |request| %>
+    <div class="request_block">
+      <%= Request.provided(request.provided).html_safe %>
+      <span>
+        <%= request.request %><br />
+        <% if request.requested_by == current_user.id %>
+          <sup><em class="text-info">(<%= "Requested from #{Account.find_by(user_id: request.requested_from).first_name}" %>)</em> <%= App.tag(request.app_id).html_safe %></sup>
+        <% else %>
+          <sup><code>(<%= "Requested by #{Account.find_by(user_id: request.requested_by).first_name}" %>)</code> <%= App.tag(request.app_id).html_safe %></sup>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+  <%= link_to "All Requests", requests_path %>
+</div>

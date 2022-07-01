@@ -1,0 +1,93 @@
+<% task = @task %>
+<% timer = OpenStruct.new Task.deadline(task.done, task.deadline) %>
+
+<% if task.deadline.present? %>
+  <%= timer.days_remaining.html_safe %>
+<% end %>
+<div class="task_description">
+  <%= task.description %>
+</div>
+<div class="type_and_category">
+  <div class="task_requester">
+    <span>Task Requester</span>
+    <span>
+      <% if task.assigned_by.present? %>
+        <%= Account.find_by(user_id: task.assigned_by).first_name %>
+      <% end %>
+    </span>
+  </div>
+  <div class="task_owner">
+    <span>Task Owner</span>
+    <span>
+      <% if task.assigned_to.present? %>
+        <%= Account.find_by(user_id: task.assigned_to).first_name %>
+      <% end %>
+    </span>
+  </div>
+  <div class="task_type">
+    <span>Task Type</span>
+    <span>
+      <% if task.task_type.present? %>
+        <%= TaskType.find(task.task_type).name %>
+      <% end %>
+    </span>
+  </div>
+  <div class="task_category">
+    <span>Task Category</span>
+    <span>
+      <% if task.category.present? %>
+        <%= TaskCategory.find(task.category).category %>
+      <% end %>
+    </span>
+  </div>
+</div>
+<div class="task_recources">
+  <% if task.resources.present? %>
+    <%= task.resources %>
+  <% else %>
+    <label>Resources <small>(Code, Images, Mockups etc)</small></label>
+    <%= text_field :task, :resources, class: "resources", oninput: "updateResources($(this).val(), '#{task.id}')", placeholder: "Paste a link to git, drive, codepen etc" %>
+  <% end %>
+</div>
+
+<div class="task_blockers task_extra_section">
+  <span class="title">Blockers</span>
+  <%= form_with(model: @blocker, class: "task_blockers") do |form| %>
+    <div class="input-group">
+      <%= form.text_field :blocker, class: "form-control" %>
+      <%= form.submit "send", class: "material-icons input-group-addon btn-blue btn-sm" %>
+    </div>
+  <% end %>
+  <% Blocker.per_task(task.id).map do |sub_task| %>
+  <% end %>
+</div>
+
+<div class="task_checklist task_extra_section">
+  <span class="title">Checklist</span>
+  <%= form_with(model: @task_checklist, class: "task_checlist") do |form| %>
+    <div class="input-group">
+      <%= form.text_field :checlist, class: "form-control" %>
+      <%= form.submit "send", class: "material-icons input-group-addon btn-blue btn-sm" %>
+    </div>
+  <% end %>
+  <% Blocker.per_task(task.id).map do |sub_task| %>
+  <% end %>
+</div>
+<div class="sub_tasks task_extra_section">
+  <span class="title">Tasks</span>
+  <%= form_with(model: @sub_task, class: "sub_tasks") do |form| %>
+    <div class="input-group">
+      <%= form.text_field :sub_task, class: "form-control" %>
+      <%= form.submit "send", class: "material-icons input-group-addon btn-blue btn-sm" %>
+    </div>
+  <% end %>
+  <% SubTask.per_task(task.id).map do |sub_task| %>
+  <% end %>
+</div>
+<div class="task_comments task_extra_section">
+  <span class="title">Comments</span>
+  <%= form_with(model: @comments, class: "comments") do |form| %>
+    <%= form.rich_text_area :comment, class: "form-control" %>
+    <button type="submit" class="float-right btn btn-sm btn-blue material-icons">send</button>
+  <% end %>
+</div>

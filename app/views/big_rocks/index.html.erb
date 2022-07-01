@@ -1,0 +1,37 @@
+<div class="row">
+  <% @quaters.map do |q| %>
+    <div class="d-flex align-items-center justify-content-center my-3">
+      <span class="flex-grow-1"><hr /></span>
+      <span class="px-3 d-flex align-items-center justify-content-center">
+        <% if q.quater == BigRock.current_quater %>
+          <span class="material-icons text-warning text-small">auto_awesome</span>
+        <% end %>
+
+        <strong style="color: #838C96; font-size: 16px;">
+          <% if q.quater == 0 %>
+            Personal Rocks
+          <% else %>
+            <%= "#{q.year.to_i} Q#{q.quater} Big Rocks" %>
+          <% end %>
+        </strong>
+      </span>
+      <span class="flex-grow-1"><hr /></span>
+    </div>
+    <div class="row">
+      <% BigRock.quaterly_rocks(q.quater, q.year.to_i).each_with_index.map do |rock, index| %>
+        <% owner = Account.find(rock.owner) %>
+        <div class="col-md-3 col-sm-4 col-xs-6">
+          <div class="card p-2">
+            <div class="rock_title">
+              <%= rock.rock %>
+            </div>
+            <hr />
+            <div class="rock_owner d-flex align-items-center justify-content-start">
+              <span class="material-icons text-info me-2">support_agent</span> <%= "#{owner.first_name} #{owner.last_name}" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

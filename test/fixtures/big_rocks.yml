@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: 
+  category: 
+  quater: 1
+  rock: MyText
+  status: 1
+
+two:
+  owner: 
+  category: 
+  quater: 1
+  rock: MyText
+  status: 1

@@ -1,0 +1,94 @@
+<script type="text/javascript">
+  // Code used to add Todo Tasks
+  jQuery(document).ready(function($)
+  {
+    function escapeHtml(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, (m) => { return map[m]; });
+    }
+    var $todo_tasks = $("#todo_tasks");
+    $todo_tasks.find('input[type="text"]').on('keydown', (ev) => {
+        if(ev.keyCode == 13) {
+            ev.preventDefault();
+            if($.trim($(this).val()).length) {
+                var $todo_entry = $('<li><div class="checkbox checkbox-replace color-white"><input type="checkbox" /><label>'+escapeHtml($(this).val())+'</label></div></li>');
+                $(this).val('');
+                $todo_entry.appendTo($todo_tasks.find('.todo-list'));
+                $todo_entry.hide().slideDown('fast');
+                replaceCheckboxes();
+            }
+        }
+    });
+  });
+</script>
+
+<div class="sidebar-menu">
+  <div class="sidebar-menu-inner">
+    <header class="logo-env">
+      <div class="logo">
+        <a href="<%= dashboard_path %>">
+          <img src="https://assets.ltvsaasgrowth.com/images/5cbf852e9172ce00235e92ab_optimized.png" class="img img-rounded" alt="" style="background: #fff; width: 40px;"/>
+        </a>
+      </div>
+      <div class="sidebar-collapse d-none d-sm-block"> <a href="#" class="sidebar-collapse-icon"> <i
+                                class="material-icons">menu</i> </a> </div>
+      <div class="sidebar-mobile-menu d-block d-sm-none"> <a href="#" class="with-animation"> <i
+                                class="material-icons">menu</i> </a> </div>
+    </header>
+    <ul id="main-menu" class="main-menu">
+      <li>
+        <%= link_to dashboard_path do %>
+          <i class="material-icons">dashboard</i>
+          <span class="title">Dashboard</span>
+        <% end %>
+      </li>
+      <li class="has-sub <% if controller_name == "app_groups" %>opened<% end %>">
+        <%= link_to app_groups_path do %>
+          <i class="material-icons">account_balance</i>
+          <span class="title">Funds</span>
+        <% end %>
+        <ul>
+          <li>
+            <% AppGroup.all.map do |group| %>
+              <%= link_to group do %>
+                <i class="entypo-newspaper"></i>
+                <span class="title"><%= group.group_name %></span>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="has-sub <% if controller_name == "apps" %>opened<% end %>">
+        <%= link_to app_groups_path do %>
+          <i class="material-icons">system_security_update_good</i>
+          <span class="title">Apps</span>
+        <% end %>
+        <ul>
+          <li>
+            <% App.order(id: :asc).map do |app| %>
+              <%= link_to app do %>
+                <span class="title"><%= app.app_name %></span>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to contest_path do %>
+          <i class="material-icons">poll</i><span class="title">Contest</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to data_path do %>
+          <i class="material-icons">insights</i><span class="title">KPI</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

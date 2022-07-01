@@ -1,0 +1,22 @@
+<%= form_with(model: task_stage) do |form| %>
+  <% if task_stage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task_stage.errors.count, "error") %> prohibited this task_stage from being saved:</h2>
+
+      <ul>
+        <% task_stage.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :stage %>
+    <%= form.text_field :stage %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

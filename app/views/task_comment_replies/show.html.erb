@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reply:</strong>
+  <%= @task_comment_reply.reply %>
+</p>
+
+<p>
+  <strong>Task comment:</strong>
+  <%= @task_comment_reply.task_comment_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task_comment_reply.user_id %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @task_comment_reply.task_id %>
+</p>
+
+<%= link_to "Edit", edit_task_comment_reply_path(@task_comment_reply) %> |
+<%= link_to "Back", task_comment_replies_path %>

@@ -1,0 +1,30 @@
+<%= form_with(model: plan) do |form| %>
+  <% if plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+        <% plan.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-sm-6">
+    <%= form.text_field :app_id, value: session[:current_app], type: :hidden %>
+
+    <div class="field form-group">
+      <%= form.text_field :name, class: "form-control", required: "required" %>
+      <%= form.label :name %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.text_field :price, class: "form-control", required: "required" %>
+      <%= form.label :price %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

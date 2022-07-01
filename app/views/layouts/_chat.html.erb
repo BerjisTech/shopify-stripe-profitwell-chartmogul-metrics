@@ -1,0 +1,3 @@
+<div id="chat" class="fixed" data-current-user="Art Ramadani" data-order-by-status="1" data-max-chat-history="25">
+  <textarea class="paper usernotes" notes_link="<%= user_note_path %>" placeholder="Your notes go here"><%= Note.find_by(user_id: current_user.id).note if Note.find_by(user_id: current_user.id).present? %></textarea>
+</div>

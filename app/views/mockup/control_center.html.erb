@@ -1,0 +1,206 @@
+<div class="overview_cards row m-3">
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div>
+        <span class="material-icons">price_check</span>
+      </div>
+      <div class="d-flex flex-column">
+        <span>Paying Revenue<small class="span-success">+15%</small></span>
+        <span class="fs-1">$<%= DailyMrr.today_mrr_data %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div>
+        <span class="material-icons">attach_money</span>
+      </div>
+      <div class="d-flex flex-column">
+        <span>Trial Revenue<small class="span-success">+15%</small></span>
+        <span class="fs-1">$<%= DailyMrr.today_trial_data %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div>
+        <span class="material-icons">group</span>
+      </div>
+      <div class="d-flex flex-column">
+        <span>Total Users<small class="span-danger">-5%</small></span>
+        <span class="fs-1"><%= DailyCount.today_user_data %></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div>
+        <span class="material-icons">apps</span>
+      </div>
+      <div class="d-flex flex-column">
+        <span>Total Apps</span>
+        <span class="fs-1"><%= Owner.where(user_id: current_user.id).count %></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row overview-charts m-3">
+
+  <div class="col-sm-8">
+    <div class="border rounded px-3 shadow">
+      <div class="d-flex flex-row justify-content-center align-items-center">
+        <span>Revenue last 30 days</span>
+        <span class="flex-grow-1"></span>
+        <div class="dropdown p-3">
+          <span class="dropdown-toggle rounded border p-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Last 30 Days
+          </span>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+            <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+            <li><a class="dropdown-item" href="#">Last 90 Days</a></li>
+            <li><a class="dropdown-item" href="#">Last 365 Days</a></li>
+            <li><a class="dropdown-item" href="#">This Year to date</a></li>
+            <li><a class="dropdown-item" href="#">Last year</a></li>
+            <li><a class="dropdown-item" href="#">All Time</a></li>
+            <li><a class="dropdown-item" href="#">Custom</a></li>
+          </ul>
+        </div>
+        <span><a href="#" class="nav-link">View all apps</a></span>
+      </div>
+      <div id="line-chart-demo" class="morrischart" style="height: 300px"></div>
+    </div>
+  </div>
+  <%= render "/mockup/common/charts/bar" %>
+
+  <div class="col-sm-4">
+    <div class="border rounded p-3 shadow">
+      <div class="d-flex flex-row justify-content-between align-items-center">
+        <span>Revenue per app</span>
+        <span><a href="#" class="nav-link">View all apps</a></span>
+      </div>
+      <div id="donut-chart-demo" class="morrischart" style="height: 300px"></div>
+    </div>
+  </div>
+  <%= render "/mockup/common/charts/donut" %>
+</div>
+
+<div class="row overview_cards m-3">
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div class="fs-1">$ <%= Metric.gross_on_date(Date.today - 30.days) %></div>
+      <hr />
+      <div style="font-size: 13px; opacity: 0.6;">Gross MRR 30 Days Ago</div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div class="fs-1">$ <%= Metric.gross_on_date(Date.today - 3.months) %></div>
+      <hr />
+      <div style="font-size: 13px; opacity: 0.6;">Gross MRR 3 Months Ago</div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div class="fs-1">$ <%= Metric.gross_on_date(Date.today - 6.months) %></div>
+      <hr />
+      <div style="font-size: 13px; opacity: 0.6;">Gross MRR 6 Months Ago</div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 shadow">
+      <div class="fs-1">$ <%= Metric.gross_on_date(Date.today - 12.months) %></div>
+      <hr />
+      <div style="font-size: 13px; opacity: 0.6;">Gross MRR 12 Months Ago</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="overview_cards row m-3">
+  <hr />
+  <h3>Shopify Data</h3>
+</div>
+<div class="overview_cards row m-3">
+
+  <div class="col-sm-4">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>Gross Mrr<small class="span-danger">-5%</small></span>
+        <span class="fs-1">$<%= Metric.latest_gross_mrr %></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>Net Revenue<small class="span-danger">-5%</small></span>
+        <span class="fs-1">$<%= Metric.latest_net_revenue %></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>Annual Run Rate<small class="span-danger">-5%</small></span>
+        <span class="fs-1">$<%= Metric.latest_arr %></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>Recurring Revenue<small class="span-success">+15%</small></span>
+        <span class="fs-1">$<%= Metric.recurring_revenue %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>One Time Charge<small class="span-success">+15%</small></span>
+        <span class="fs-1">$<%= Metric.one_time_charge %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>Refunds<small class="span-danger">-5%</small></span>
+        <span class="fs-1"><%= Metric.refunds %>$</span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="border rounded p-3 my-2 shadow">
+      <div class="d-flex flex-column">
+        <span>Average Revenue Per User<small class="span-danger">-5%</small></span>
+        <span class="fs-1">$ <%= Metric.arpu %></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<span class="m-4"></span>

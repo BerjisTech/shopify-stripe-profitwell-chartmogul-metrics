@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://assets.ltvsaasgrowth.com/js/jvectormap/jquery-jvectormap-1.2.2.css"
+        id="style-resource-1">
+<link rel="stylesheet" href="https://assets.ltvsaasgrowth.com/js/rickshaw/rickshaw.min.css" />
+
+<link rel="stylesheet" href="https://assets.ltvsaasgrowth.com/js/select2/select2-bootstrap.css" />
+<link rel="stylesheet" href="https://assets.ltvsaasgrowth.com/js/select2/select2.css" />
+<script src="https://assets.ltvsaasgrowth.com/js/select2/select2.min.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/gsap/TweenMax.min.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/joinable.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/resizeable.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/neon-api.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/cookies.min.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/jquery.sparkline.min.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/raphael-min.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/morris.min.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/toastr.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/neon-chat.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/neon-custom.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/neon-demo.js"></script>
+<script src="https://assets.ltvsaasgrowth.com/js/neon-skins.js"></script>
+<script>
+  function inform(info, type) {
+      var opts = {
+          "closeButton": true,
+          "debug": false,
+          "positionClass": "toast-top-right",
+          "toastClass": "primary",
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "10000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      };
+      if (type == 'Error') {
+          toastr.error(info, "Error:", opts)
+      }
+      else {
+          toastr.info(info, "Info:", opts)
+      }
+  }
+</script>

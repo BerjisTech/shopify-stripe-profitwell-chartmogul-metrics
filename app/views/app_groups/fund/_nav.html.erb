@@ -1,0 +1,36 @@
+<div class="col-sm-2">
+  <%= link_to group_members_path, class: "nav_path_custom" do %>
+    <span class="material-icons">groups</span>
+    <span><%= @app_group.group_name.humanize %> Members</span>
+  <% end %>
+  <%= link_to events_path, class: "nav_path_custom" do %>
+    <span class="material-icons">local_activity</span>
+    <span><%= @app_group.group_name.humanize %> Events</span>
+  <% end %>
+  <%= link_to daily_mrrs_path, class: "nav_path_custom" do %>
+    <span class="material-icons">payments</span>
+    <span><%= @app_group.group_name.humanize %> MRR</span>
+  <% end %>
+  <%= link_to daily_counts_path, class: "nav_path_custom" do %>
+    <span class="material-icons">price_change</span>
+    <span><%= @app_group.group_name.humanize %> Daily Users</span>
+  <% end %>
+  <%= link_to reviews_path, class: "nav_path_custom" do %>
+    <span class="material-icons">account_balance</span>
+    <span><%= @app_group.group_name.humanize %> Reviews</span>
+  <% end %>
+  <%= link_to calls_path, class: "nav_path_custom" do %>
+    <span class="material-icons">credit_card_off</span>
+    <span><%= @app_group.group_name.humanize %> Calls</span>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-sm-10">
+    <div class="d-flex align-items-end justify-content-end">
+      <% if current_user.id == @app_group.user_id %>
+        <%= link_to "Edit", edit_app_group_path(@app_group), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

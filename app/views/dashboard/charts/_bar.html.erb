@@ -1,0 +1,35 @@
+<div id="line-chart-demo" class="morrischart" style="height: 300px"></div>
+<script>
+  jQuery(document).ready(($) => {
+    var line_chart_demo = $("#line-chart-demo");
+    var line_chart = Morris.Bar({
+        element: 'line-chart-demo',
+        data: [
+            <% @general_mrr_data.map do |mrr| %>
+            <% amount = if (mrr.amount.present? && mrr.amount > 0)
+                   mrr.amount
+                 else
+                   0
+                 end %>
+            <% trial = if (mrr.trial.present? && mrr.trial > 0)
+                   mrr.trial
+                 else
+                   0
+                 end %>
+                {
+                    y: "<%= mrr.date.strftime("%Y-%m-%d") %>",
+                    a: <%= amount.round(2) %>,
+                    b: <%= trial.round(2) %>
+                },
+            <% end %>
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Paying', 'Trial'],
+        barColors: ['#149DA8', '#D37A0D'],
+        redraw: true,
+        stacked: true
+    });
+    line_chart_demo.parent().attr('style', '');
+  })
+</script>

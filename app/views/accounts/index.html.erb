@@ -1,0 +1,30 @@
+<h1>Accounts</h1>
+
+<table class="table table-responsive table-hover">
+  <thead class="table-dark bg-dark">
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= "#{account.first_name} #{account.last_name}" %></td>
+        <td>
+          <%= Role.find(account.role_id).name %>
+        </td>
+        <td>
+          <%= link_to "visibility", account, class: "material-icons text-info nav-link" %> 
+          <% if Account.admin(current_user.id) %>
+            <%= link_to "dashboard", "dashboard/user/#{account.user_id}", class: "material-icons text-success nav-link" %>
+            <%= link_to "edit", edit_account_path(account), class: "material-icons text-success nav-link" %>
+            <%= link_to "delete", account, method: :delete, class: "material-icons text-danger nav-link", data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<div class="my_todos">
+  <span class="my_todos_title">My Pending ToDos</span>
+
+  <% if @my_todos.empty? %>
+    <div class="to_do_block">
+      <% timer = OpenStruct.new Todo.deadline(1, 0) %>
+      <%= timer.icon.html_safe %>
+      <span>
+        You have no pending To Dos
+      </span>
+      <%= timer.days_remaining.html_safe %>
+    </div>
+  <% end %>
+
+  <% @my_todos.map do |todo| %>
+    <div class="to_do_block">
+      <% timer = OpenStruct.new Todo.deadline(todo.done, todo.deadline) %>
+      <%= timer.icon.html_safe %>
+      <span>
+        <%= todo.to_do %>
+      </span>
+      <%= timer.days_remaining.html_safe %>
+    </div>
+  <% end %>
+
+  <%= link_to "All ToDos", todos_path %>
+</div>

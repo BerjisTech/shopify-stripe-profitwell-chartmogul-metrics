@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Webhooks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Origin</th>
+      <th>App</th>
+      <th>Platform</th>
+      <th>Slag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @webhooks.each do |webhook| %>
+      <tr>
+        <td><%= webhook.origin %></td>
+        <td><%= webhook.app_id %></td>
+        <td><%= webhook.platform %></td>
+        <td><%= webhook.slag %></td>
+        <td><%= link_to "Show", webhook %></td>
+        <td><%= link_to "Edit", edit_webhook_path(webhook) %></td>
+        <td><%= link_to "Destroy", webhook, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Webhook", new_webhook_path %>

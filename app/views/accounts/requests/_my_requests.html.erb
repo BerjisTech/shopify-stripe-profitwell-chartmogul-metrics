@@ -1,0 +1,10 @@
+<% @requests.map do |request| %>
+  <div class="request_block">
+    <%= Request.provided(request.provided).html_safe %>
+    <span>
+      <%= request.request %>
+      <sup><code>(<%= "Requested by #{Account.find_by(user_id: request.requested_by).first_name}" %>)</code> <%= App.tag(request.app_id).html_safe %></sup>
+    </span>
+    <span class="request_updater"><input onchange="updaterequest('<%= request.id %>', 1)" type="checkbox" name="toggle"/></span>
+  </div>
+<% end %>

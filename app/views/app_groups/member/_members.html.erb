@@ -1,0 +1,15 @@
+<% colors = ["#EE9310", "#8ECF3E", "#172233", "#EA4C89", "#65D5F2", "#404ECF", "#9B81DD", "#661F50", "#93C3FB", "#A3E7EB", "#5DD4CB", "#65264E"] %>
+<div class="members-section">
+  <% @fund_members.map do |member| %>
+  <% random = rand(0...colors.length - 1) %>
+    <div class="member_card">
+      <span class="user_dp" style="color: <%= colors[random] %>; border: 3px solid <%= colors[random] %>;">
+        <%= "#{member.first_name[0...1]}#{member.last_name[0...1]}" %>
+      </span>
+      <div>
+        <span><%= "#{member.first_name.humanize} #{member.last_name.humanize}" %></span>
+        <span><%= Role.find(member.role_id).name %></span>
+      </div>
+    </div>
+  <% end %>
+</div>

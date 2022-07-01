@@ -1,0 +1,60 @@
+<h1>Owners</h1>
+
+<table class="table table-responsive table-hover">
+  <thead>
+    <tr>
+      <th style="width: 200px;">App</th>
+      <th>Members</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @owners.each do |owner| %>
+      <tr>
+        <td><%= App.find(owner.app_id).app_name if owner.app_id.present? %></td>
+        <td>
+          <% App.owners(owner.app_id).map do |user| %>
+            <% account = Account.find_by(user_id: user.user_id) %>
+            <% if user.user_id.present? && account.present? %>
+              <%= link_to account.first_name, account_path(account.id), class: "p-1 border m-1 rounded bg-white" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Owner", new_owner_path %>
+
+<% if Account.admin(current_user.id) %>
+  <br />
+
+  <table class="table table-responsive table-hover">
+    <thead class="table-dark bg-dark">
+      <tr>
+        <th>App</th>
+        <th>User</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Owner.all.each do |owner| %>
+        <tr>
+          <td><%= App.find(owner.app_id).app_name if owner.app_id.present? %></td>
+          <td><%= Account.find_by(user_id: owner.user_id).first_name if owner.user_id.present? && Account.find_by(user_id: owner.user_id).present? %></td>
+          <td>
+            <%= link_to "Show", owner %>
+            <% if Account.admin(current_user.id) %>
+              <%= link_to "Edit", edit_owner_path(owner) %>
+              <%= link_to "Destroy", owner, method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

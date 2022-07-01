@@ -1,0 +1,42 @@
+<div class="col-6 col-xs-12 user_tasks">
+  <div class="user_tasks_margin">
+    <div class="col-12 user_tasks_title">
+      <% if Account.editor(@account.user_id) %>
+        Rep Metrics Summary
+      <% else %>
+        My Metrics Summary
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div class="tile-stats tile-blue">
+          <div class="icon"><i class="material-icons">reviews</i></div>
+          <div class="num" data-start="0" data-end="<%= user_reviews(@account.user_id).asks %>" data-postfix="" data-duration="1400" data-delay="0"><%= user_reviews(@account.user_id).asks %></div>
+          <h3>Review asks</h3>
+          <p><%= user_reviews(@account.user_id).received %> received</p>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="tile-stats tile-red">
+          <div class="icon"><i class="material-icons">question_answer</i></div>
+          <div class="num" data-start="0" data-end="<%= user_chats(@account.user_id) %>" data-postfix="" data-duration="1400" data-delay="0"><%= user_chats(@account.user_id) %></div>
+          <h3>Total Live Chats</h3>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="tile-stats tile-green">
+          <div class="icon"><i class="material-icons">perm_phone_msg</i></div>
+          <div class="num" data-start="0" data-end="<%= user_calls(@account.user_id) %>" data-postfix="" data-duration="1400" data-delay="0"><%= user_calls(@account.user_id) %></div>
+          <h3>Total Calls Sessions</h3>
+        </div>
+      </div>
+
+      <div class="col-12">
+      <%= link_to "view all metrics", contest_path, class: "nav-link" %>
+      </div>
+    </div>
+  </div>
+</div>

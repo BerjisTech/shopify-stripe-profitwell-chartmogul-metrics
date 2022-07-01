@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sub Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Assigned to</th>
+      <th>Assigned by</th>
+      <th>Deadline</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sub_tasks.each do |sub_task| %>
+      <tr>
+        <td><%= sub_task.task %></td>
+        <td><%= sub_task.assigned_to %></td>
+        <td><%= sub_task.assigned_by %></td>
+        <td><%= sub_task.deadline %></td>
+        <td><%= link_to "Show", sub_task %></td>
+        <td><%= link_to "Edit", edit_sub_task_path(sub_task) %></td>
+        <td><%= link_to "Destroy", sub_task, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Sub Task", new_sub_task_path %>

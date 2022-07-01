@@ -1,0 +1,19 @@
+<% TaskStage.order(created_at: :asc).each_with_index.map do |stage, index| %>
+  <div class="task_stage" id="<%= stage.id %>">
+    <div class="task_stage_title">
+      <span><%= stage.stage %></span>
+      <span class="material-icons">add</span>
+    </div>
+
+    <div class="ms-3">
+      <% if index == 0 %>
+        <%= render "tasks/stages/form" %>
+      <% end %>
+    </div>
+    <div class="task_stage_scroller" id="task_sortable_<%= stage.id %>">
+      <script>
+        load_tasks('<%= stage.id %>')
+      </script>
+    </div>
+  </div>
+<% end %>

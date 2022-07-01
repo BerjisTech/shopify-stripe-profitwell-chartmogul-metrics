@@ -1,0 +1,41 @@
+<%= form_with(model: account) do |form| %>
+  <% if account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+        <% account.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-sm-6">
+    <% if Account.find_by(user_id: current_user.id).first_name.present? %>
+      <% if Account.editor(current_user.id) %>
+        <%= form.number_field :user_id, value: @account.user_id, type: :hidden %>
+        <div class="field form-group form-floating m-2">
+          <%= select_tag("account[role_id]", options_from_collection_for_select(Role.order(id: :asc), :id, :name), { :class => "form-control", :placeholder => "Placeholder", prompt: "User role?", required: "required" }) %>
+          <%= form.label :role_id %>
+        </div>
+      <% else %>
+        <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+      <% end %>
+    <% else %>
+      <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+    <% end %>
+    <div class="field form-group form-floating m-2">
+      <%= form.text_field :first_name, class: "form-control" %>
+      <%= form.label :first_name %>
+    </div>
+
+    <div class="field form-group form-floating m-2">
+      <%= form.text_field :last_name, class: "form-control" %>
+      <%= form.label :last_name %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary m-2" %>
+    </div>
+  </div>
+<% end %>

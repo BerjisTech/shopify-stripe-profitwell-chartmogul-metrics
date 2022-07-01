@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @big_rock.owner %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @big_rock.category %>
+</p>
+
+<p>
+  <strong>Quater:</strong>
+  <%= @big_rock.quater %>
+</p>
+
+<p>
+  <strong>Rock:</strong>
+  <%= @big_rock.rock %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @big_rock.status %>
+</p>
+
+<%= link_to "Edit", edit_big_rock_path(@big_rock) %> |
+<%= link_to "Back", big_rocks_path %>

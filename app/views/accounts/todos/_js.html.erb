@@ -1,0 +1,48 @@
+<script>
+  $('.to_do_content_form').on('submit', (e) => {
+      e.preventDefault()
+      $.ajax({
+          url: '<%= ajax_todo_url %>',
+          method: 'POST',
+          data: $('.to_do_content_form').serialize(),
+          success: (response) => {
+              console.log(response)
+              $('[name="todo[to_do]"]').val('')
+              inform('ToDo succesfully added', 'Info')
+              load_todos()
+          },
+          error: (error) => {
+              console.log(error)
+              inform(error, 'Error')
+          }
+      })
+  })
+  
+  const load_todos = () => {
+      $('.to_do_block').remove()
+      $('<img class="da_image" src="https://assets.ltvsaasgrowth.com/images/loader-1.gif" />').insertAfter('.to_do_content_form')
+      $.ajax({
+          url: '<%= "#{root_url}todo/fetch/#{@account.user_id}" %>',
+          method: 'GET',
+          success: (todos) => {
+              $('.da_image').remove()
+              $(todos).insertAfter('.to_do_content_form')
+          }
+      })
+  }
+  
+  const updateToDo = (todo, state) => {
+      $.ajax({
+          url: `<%= root_url %>todo/update`,
+          data: {
+              'authenticity_token': $('[name="csrf-token"]')[0].content,
+              'todo': todo,
+              'state': state
+          },
+          method: 'POST',
+          success: (todos) => {
+              load_todos()
+          }
+      })
+  }
+</script>

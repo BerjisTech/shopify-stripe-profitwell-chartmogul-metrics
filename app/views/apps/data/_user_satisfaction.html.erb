@@ -1,0 +1,40 @@
+<div class="tile-stats tile-green">
+  <div class="icon"><i class="material-icons">groups</i></div>
+
+  <div class="num" data-start="0" data-end="<%= @member_count %>" data-postfix="" data-duration="1400" data-delay="0"><%= @member_count %></div>
+  <br />
+  <h3>Members</h3>
+
+  <p>Reps, Ops and managers on <%= @app.app_name %></p>
+</div>
+
+<div class="tile-stats tile-neon-red">
+
+  <div class="icon"><i class="material-icons">reviews</i></div>
+
+  <div class="num" data-start="0" data-end="<%= @review_count %>" data-postfix="" data-duration="1400" data-delay="0"><%= @review_count %></div>
+
+  <h3>Reviews</h3>
+
+  <p>New reviews this week</p>
+</div>
+
+<div class="tile-stats tile-blue">
+  <div class="icon"><i class="material-icons">phone_enabled</i></div>
+
+  <div class="num" data-start="0" data-end="<%= @calls_count %>" data-postfix="" data-duration="1400" data-delay="0"><%= @calls_count %></div>
+
+  <h3>Live Calls</h3>
+
+  <p>New calls this week</p>
+</div>
+
+<div class="tile-stats tile-orange">
+  <div class="icon"><i class="material-icons">comment</i></div>
+
+  <div class="num" data-start="0" data-end="<%= @chats_count %>" data-postfix="" data-duration="1400" data-delay="0"><%= @chats_count %></div>
+
+  <h3>Live chats</h3>
+
+  <p>New live chats week</p>
+</div>

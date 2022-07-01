@@ -1,0 +1,63 @@
+<form class="form contest_price_form d-flex flex-row border mt-1 rounded">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <div class="form-group form-floating">
+    <input name="contest[request_price]" type="number" class="form-control" placeholder="Request Price" >
+    <label for="contest[request_price]">Request Price</label>
+  </div>
+  <div class="form-group form-floating">
+    <input name="contest[received_price]" type="number" class="form-control" placeholder="Received Price" >
+    <label for="contest[received_price]">Received Price</label>
+  </div>
+  <div class="form-group form-floating">
+    <input name="contest[chat_price]" type="number" class="form-control" placeholder="Chat Price" >
+    <label for="contest[chat_price]">Chat Price</label>
+  </div>
+  <div class="form-group form-floating">
+    <input name="contest[call_price]" type="number" class="form-control" placeholder="Call Price" >
+    <label for="contest[call_price]">Call Price</label>
+  </div>
+  <div class="form-group form-floating">
+    <%= select_tag("contest[app_id]", options_from_collection_for_select(App.all, :id, :app_name), { :class => "form-control", :placeholder => "App?", prompt: "App?" }) %>
+    <label for="contest[app_id]">App?</label>
+  </div>
+  <div class="form-group form-floating">
+    <%= select_tag("contest[platform_id]", options_from_collection_for_select(Platform.all, :id, :name), { :class => "form-control", :placeholder => "Platform?", prompt: "Platform?" }) %>
+    <label for="contest[platform_id]">Platform</label>
+  </div>
+  <div class="form-group form-floating">
+    <input name="contest[period_start]" type="date" class="form-control" placeholder="Call Price" >
+    <label for="contest[period_start]">Contest Start</label>
+  </div>
+  <div class="form-group form-floating">
+    <input name="contest[period_end]" type="date" class="form-control" placeholder="Call Price" >
+    <label for="contest[period_end]">Contest end</label>
+  </div>
+  <button class="btn btn-primary material-icons">add</button>
+</form>
+
+<style>
+  .contest_price_form .form-control{
+      border-radius: 0px !important;
+  }
+  .contest_price_form  button{
+      border-radius: 0px 10px 10px 0px !important;
+    }
+</style>
+
+<script>
+  $('.contest_price_form').on('submit', (e)=>{
+      e.preventDefault();
+      $.ajax({
+          url: '<%= new_contest_path %>',
+          data: $('.contest_price_form').serialize(),
+          method: 'POST',
+          success: (success) => {
+              console.log(success)
+              inform(success.message, success.type)
+          },
+          error: (error) => {
+              console.log(error)
+          }
+      })
+  })
+</script>

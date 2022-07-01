@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Stage:</strong>
+  <%= @task_stage.stage %>
+</p>
+
+<%= link_to "Edit", edit_task_stage_path(@task_stage) %> |
+<%= link_to "Back", task_stages_path %>

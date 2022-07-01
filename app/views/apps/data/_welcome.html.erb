@@ -1,0 +1,46 @@
+<div class="app_welcome">
+  <span class="app_name"><%= @app.app_name %></span>
+  <span class="overview">Overview</span>
+</div>
+
+<div class="app_numbers">
+  <div class="app_number_mrr">
+    <span class="material-icons">addchart</span>
+    <div class="details">
+      <span>Latest MRR</span>
+      <span>$ 
+        <% if @mrr.empty? %>
+          0
+        <% else %>
+          <%= number_with_precision(@mrr.last.amount.to_f, precision: 2, delimiter: ",", separator: ".") %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+  <div class="app_number_trial">
+    <span class="material-icons">group_add</span>
+    <div class="details">
+      <span>Latest Trial</span>
+      <span>$ 
+        <% if @mrr.empty? %>
+          0
+        <% else %>
+          <%= number_with_precision(@mrr.last.trial.to_f, precision: 2, delimiter: ",", separator: ".") %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+  <div class="app_number_users">
+    <span class="material-icons">groups</span>
+    <div class="details">
+      <span>Total Users</span>
+      <span>
+        <% if @users.empty? %>
+          0
+        <% else %>
+          <%= number_with_precision(@users.first.total_count, precision: 0, delimiter: ",", separator: ".") %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>

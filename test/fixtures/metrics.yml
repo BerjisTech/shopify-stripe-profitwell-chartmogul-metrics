@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mrr: 1.5
+  net_revenue: 1.5
+  fees: 1.5
+  other_revenue: 1.5
+  avg_revenue_per_user: 1.5
+  arr: 1.5
+  ltv: 1.5
+  mrr_growth_rate: 1.5
+  user_churn: 1.5
+  revenue_churn: 1.5
+  quick_ratio: 1.5
+  active_customers: 1
+  new_customers: 1
+  reactivations: 1
+  new_subscriptions: 1
+  active_subscriptions: 1
+  upgrades: 1
+  downgrades: 1
+  churned_customers: 1
+  coupons_redeemed: 1.5
+  failed_charges: 1
+  refunds: 1.5
+
+two:
+  mrr: 1.5
+  net_revenue: 1.5
+  fees: 1.5
+  other_revenue: 1.5
+  avg_revenue_per_user: 1.5
+  arr: 1.5
+  ltv: 1.5
+  mrr_growth_rate: 1.5
+  user_churn: 1.5
+  revenue_churn: 1.5
+  quick_ratio: 1.5
+  active_customers: 1
+  new_customers: 1
+  reactivations: 1
+  new_subscriptions: 1
+  active_subscriptions: 1
+  upgrades: 1
+  downgrades: 1
+  churned_customers: 1
+  coupons_redeemed: 1.5
+  failed_charges: 1
+  refunds: 1.5

@@ -1,0 +1,36 @@
+<%= form_with(model: owner) do |form| %>
+  <% if owner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
+
+      <ul>
+        <% owner.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-sm-6">
+    <%= form.number_field :app_id, value: session[:current_app], type: :hidden %>
+
+    <div class="field form-group">
+      <%= select_tag("owner[user_id]", options_from_collection_for_select(Account.all, :user_id, :first_name), { :class => "form-control", :placeholder => "Placeholder" }) %>
+      <%= form.label :user_id %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.number_field :level, class: "form-control", required: "required" %>
+      <%= form.label :level %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.number_field :status, class: "form-control", required: "required" %>
+      <%= form.label :status %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Add App Team member", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

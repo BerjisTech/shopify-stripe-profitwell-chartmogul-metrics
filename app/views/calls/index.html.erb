@@ -1,0 +1,41 @@
+<h1>Calls</h1>
+
+<table class="table table-responsive table-hover">
+  <thead>
+    <tr>
+      <th>App</th>
+      <th>User</th>
+      <th>Ticket</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @calls.each do |call| %>
+      <tr>
+        <td>
+          <% if call.app_id.present? %>
+            <%= link_to App.find(call.app_id).tag, app_path(call.app_id) %>
+          <% end %>
+        </td>
+        <td><%= Account.find_by(user_id: call.user_id).first_name if call.user_id.present? %></td>
+        <td><%= link_to "#{call.ticket[0...28]}...", call.ticket %></td>
+        <td><%= call.date.strftime("%B #{call.date.day.ordinalize} %Y") if call.date.present? %></td>
+        <% if Account.editor(current_user.id) || call.user_id == current_user.id %>
+          <td><%= link_to "Show", call %></td>
+          <td><%= link_to "Edit", edit_call_path(call) %></td>
+          <td><%= link_to "Destroy", call, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Call", new_call_path %>

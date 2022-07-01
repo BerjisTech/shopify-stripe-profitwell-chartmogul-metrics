@@ -1,0 +1,43 @@
+<script>
+  $('[name="task[task]"]').on('click', () => {
+    $('.richtext').show()
+  })
+    $('.task_content_form').on('submit', (e) => {
+      e.preventDefault()
+      $.ajax({
+          url: '<%= ajax_task_url %>',
+          method: 'POST',
+          data: $('.task_content_form').serialize(),
+          success: (response) => {
+              console.log(response)
+              $('.task_content_form')[0].reset()
+              $('.richtext').hide()
+              inform('task succesfully added', 'Info')
+              load_tasks()
+          },
+          error: (error) => {
+              console.log(error)
+              inform(error, 'Error')
+          }
+      })
+    })
+  
+    const load_tasks = () => {
+      $('.task_block').remove()
+      $('.task_content_block').html($('<img class="da_image" src="https://assets.ltvsaasgrowth.com/images/loader-1.gif" />'))
+      $.ajax({
+          url: '<%= "#{root_url}task/fetch/#{@account.user_id}" %>',
+          method: 'GET',
+          success: (tasks) => {
+              $('.da_image').remove()
+              $('.task_content_block').html($(tasks))
+          }
+      })
+    }
+  
+    $('.richtext').keydown(function (event) {
+      if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+          $('.task_content_form').trigger('submit')
+      }
+    });
+</script>

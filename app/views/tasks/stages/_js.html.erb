@@ -1,0 +1,139 @@
+<script>
+  const load_tasks = (stage) => {
+    $(`#${stage} .task_stage_scroller .task_block`).remove()
+    $(`#${stage} .task_stage_scroller`).append('<img class="da_image" src="https://assets.ltvsaasgrowth.com/images/loader-1.gif" />')
+    $.ajax({
+      url: `<%= fetch_tasks_per_stage_path %>`,
+      data: {
+            stage: stage
+            },
+      method: 'GET',
+      success: (response) => {
+        $(`.da_image`).remove()
+        $(`#${stage} .task_stage_scroller`).append(response)
+      },
+      error: (error) => {}
+    })
+  }
+
+  const load_task_decsription = (task_id) => {
+    $('[class^="task_details_"]').html('')
+    $(`.task_details_${task_id} `).html('<img class="da_image" src="https://assets.ltvsaasgrowth.com/images/loader-1.gif" />')
+    $.ajax({
+      url: `<%= fetch_task_details_path %>?task=${task_id}`,
+      method: 'GET',
+      success: (response) => {
+        console.log(response)
+        $(`.da_image`).remove()
+        $(`.close_details_${task_id} `).show()
+        $(`.task_details_${task_id} `).html(response)
+      },
+      error: (error) => {}
+    })
+  }
+
+  const update_task = (task_id, task_action) => {
+    $.ajax({
+      url: `<%= task_update_path %>`,
+      method: 'POST',
+      data: {
+        authenticity_token: $('[name="csrf-token"]')[0].content,
+        id: task_id,
+        task_action: task_action
+      },
+      success: (response) => {
+        console.log(response)
+        $(`#${task_id}`).remove()
+        load_tasks(response.stage_to_load)
+      },
+      error: (error) => {
+        console.log(error.responseText)
+      }
+    })
+  }
+
+  jQuery(document).ready(($) => {
+
+    let add_task = $('.task_stage:first-of-type .task_stage_title .material-icons')
+    close_task_form()
+
+    function open_task_form() {
+      $(add_task).css('transform', 'rotateZ(45deg)')
+      $('.create_new_task_form').show()
+      add_task.on('click', () => { close_task_form() })
+    }
+
+    function close_task_form() {
+      $(add_task).css('transform', 'rotateZ(0deg)')
+      $('.create_new_task_form').hide()
+      add_task.on('click', () => { open_task_form() })
+    }
+
+    function updateResources(resource, task){
+        return false
+    }
+
+    $('.is_priority_flag').on('click', (e) => {
+      current_value = $('.create_new_task_form [name="task[is_priority]"]').val() * 1
+      new_value = Math.abs(current_value + -1)
+      $('.create_new_task_form [name="task[is_priority]"]').val(new_value)
+      $(e.target).toggleClass("text-danger")
+    })
+
+    $('.create_new_task_form').on('submit', (e) => {
+        e.preventDefault()
+        let task_form_data = {
+            'assigned_by':$('.create_new_task_form [name="task[assigned_by]"]').val(),
+            'assigned_to':$('.create_new_task_form [name="task[assigned_to]"]').val(),
+            'task':$('.create_new_task_form [name="task[task]"]').val(),
+            'description':$('.create_new_task_form [name="task[description]"]').val(),
+            'deadline':$('.create_new_task_form [name="task[deadline]"]').val(),
+            'app_id':$('.create_new_task_form [name="task[app_id]"]').val(),
+            'stage':'<%= TaskStage.find_by(stage: "Open").id %>',
+            'category':$('.create_new_task_form [name="task[category]"]').val(),
+            'task_type':$('.create_new_task_form [name="task[task_type]"]').val(),
+            'resources':$('.create_new_task_form [name="task[resources]"]').val(),
+            'is_priority':$('.create_new_task_form [name="task[is_priority]"]').val() * 1
+          }
+
+        if ($('.create_new_task_form [name="task[description]"]').val() == ''){
+          inform('You need to add a description', 'Error')
+        }else{
+          console.log(task_form_data)
+          $.ajax({
+            url: '<%= ajax_task_url %>',
+            method: 'POST',
+            data: {
+              'authenticity_token': $('[name="csrf-token"]')[0].content,
+              task: task_form_data
+            },
+            success: (response) => {
+              console.log(response)
+              $(e.target)[0].reset()
+              close_task_form()
+              $('.richtext').hide()
+              inform('task succesfully added', 'Info')
+              load_tasks(task_form_data.stage)
+            },
+            error: (error) => {
+              console.log(error)
+              inform(error, 'Error')
+            }
+          })
+        }
+    })
+
+    $('.task_blockers').on('submit', (e) => {
+        e.preventDefault()
+    })
+    $('.sub_tasks').on('submit', (e) => {
+        e.preventDefault()
+    })
+    $('.task_checlist').on('submit', (e) => {
+        e.preventDefault()
+    })
+    $('.comments').on('submit', (e) => {
+        e.preventDefault()
+    })
+  })
+</script>

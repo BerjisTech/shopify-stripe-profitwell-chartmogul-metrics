@@ -1,0 +1,199 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body {
+    overflow-x: hidden !important;
+}
+
+.main-content {
+    padding: 20px 20px 0px 20px !important;
+}
+
+.switch input {
+    top         : 0;
+    right       : 0;
+    bottom      : 0;
+    left        : 0;
+    -ms-filter  : "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter      : alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity     : 0;
+    z-index     : 100;
+    position    : absolute;
+    width       : 100%;
+    height      : 100%;
+    cursor      : pointer;
+}
+
+.switch {
+    width   : 80px;
+    height  : 25px;
+    position: relative;
+}
+
+.switch label {
+    display         : block;
+    width           : 80%;
+    height          : 100%;
+    position        : relative;
+    /* background   : #1F2736; */
+    /*#121823*/
+    /* background   : linear-gradient(#121823, #161d2b); */
+    border-radius   : 30px 30px 30px 30px;
+    box-shadow      : inset 0 3px 8px 1px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.2);
+    -webkit-transition: all 0.5s ease;
+    transition        : all 0.5s ease;
+}
+
+.switch input~label i {
+    display      : block;
+    height       : 21px;
+    width        : 21px;
+    position     : absolute;
+    left         : 2px;
+    top          : 2px;
+    z-index      : 2;
+    border-radius: inherit;
+    background   : #283446;
+    /* Fallback */
+    background   : linear-gradient(#003471, #283446);
+    box-shadow   : inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 8px rgba(0, 0, 0, 0.3),
+        0 12px 12px rgba(0, 0, 0, 0.4);
+    -webkit-transition: all 0.5s ease;
+    transition        : all 0.5s ease;
+}
+
+.switch label+span {
+    content         : "";
+    display         : inline-block;
+    position        : absolute;
+    left            : 85%;
+    right           : 0px;
+    top             : 3px;
+    width           : 18px;
+    height          : 18px;
+    border-radius   : 10px;
+    /* background   : #283446; */
+    /* background   : gradient-gradient(#003471, #283446); */
+    box-shadow      : inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 10px rgba(185, 231, 253, 0), inset 0 0 8px rgba(0, 0, 0, 0.9),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.3), inset 0 -5px 5px rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 0.5s ease;
+    transition        : all 0.5s ease;
+    z-index           : 2;
+}
+
+/* Toggle */
+.switch input:checked~label+span {
+    content           : "";
+    display           : inline-block;
+    position          : absolute;
+    width             : 18px;
+    height            : 18px;
+    border-radius     : 10px;
+    -webkit-transition: all 0.5s ease;
+    transition        : all 0.5s ease;
+    z-index           : 2;
+    background        : #83B5CB;
+    background        : gradient-gradient(#83B5CB, #77a1b9);
+    box-shadow        : inset 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 #83B5CB,
+        0 0 10px rgba(100, 231, 253, 1), inset 0 0 8px rgba(61, 157, 247, 0.8),
+        inset 0 -2px 5px rgba(185, 231, 253, 0.3),
+        inset 0 -3px 8px rgba(185, 231, 253, 0.5);
+}
+
+.switch input:checked~label i {
+    left: auto;
+    left: 63%;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 8px rgba(0, 0, 0, 0.3),
+        0 8px 8px rgba(0, 0, 0, 0.3), inset -1px 0 1px #b9f3fe;
+
+    -webkit-transition: all 0.5s ease;
+    transition        : all 0.5s ease;
+}
+
+
+.page-body .select2-drop .select2-search input {
+    padding      : 10px 12px !important;
+    padding-right: 30px !important;
+}
+
+.select2-search input {
+    padding           : 4px 20px 4px 5px !important;
+    font-size         : 1em !important;
+    border            : 1px solid #aaa !important;
+    border-radius     : 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow        : none !important;
+    background        : #fff url(select2.png) no-repeat 100% -22px !important;
+    background        : url(select2.png) no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, #fff), color-stop(0.99, #eee)) !important;
+    background        : url(select2.png) no-repeat 100% -22px, -webkit-linear-gradient(center bottom, #fff 85%, #eee 99%) !important;
+    background        : url(select2.png) no-repeat 100% -22px, -moz-linear-gradient(center bottom, #fff 85%, #eee 99%) !important;
+    background        : url(select2.png) no-repeat 100% -22px, linear-gradient(to bottom, #fff 85%, #eee 99%) 0 0 !important;
+}
+
+.page-body .select2-container .select2-choice .select2-arrow b:before {
+    font-family: 'Material Icons' !important;
+    content    : "\e5cf" !important;
+}
+
+.page-body .select2-drop .select2-search:after {
+    font-family: 'Material Icons' !important;
+    content    : "\e8b6" !important;
+}
+
+.dataTables_wrapper>div input[type="text"],
+.dataTables_wrapper>div input[type="search"],
+.dataTables_wrapper>div input[type="number"] {
+    padding  : 6px 10px !important;
+    font-size: 12px !important;
+}
+
+/* Dividers */
+.divider_small {
+    margin       : 40px auto;
+    width        : 25%;
+    border       : none;
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+}
+
+.divider_medium {
+    margin       : 40px auto;
+    width        : 55%;
+    border       : none;
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+}
+
+.divider_large {
+    margin       : 40px auto;
+    width        : 100%;
+    border       : none;
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+}
+
+.divider {
+    margin       : 40px auto;
+    width        : 75%;
+    border       : none;
+    border-bottom: 1px solid rgba(190, 190, 190, 1);
+}
+
+.dividerOr {
+    margin       : -55px auto 20px;
+    background   : #fff;
+    padding      : 5px 10px;
+    border-radius: 100%;
+}

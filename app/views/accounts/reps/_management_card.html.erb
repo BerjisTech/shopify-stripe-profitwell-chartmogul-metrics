@@ -1,0 +1,13 @@
+<div class="management_card card d-flex flex-column">
+  <div class="unneccessary_graphic">
+    <img src="https://assets.ltvsaasgrowth.com/images/career.jpg" />
+  </div>
+  <span class="m-2">Hi <%= @account.first_name %></span>
+  <div class="actual_data d-flex flex-column">
+    <span>Manage Your Support Work in One Touch</span>
+    <span>Track your tasks, todos, requests, reviews, calls, etc</span>
+    <span>
+      <%= link_to "MANAGE", tasks_path %>
+    </span>
+  </div>
+</div>

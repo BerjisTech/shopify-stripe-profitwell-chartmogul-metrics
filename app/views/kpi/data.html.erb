@@ -1,0 +1,173 @@
+<style>
+  .20_px_height{
+    height: 20px !important;
+    font-size: 12px !important;
+  }
+</style>
+<div class="p-3 d-flex flex-row">
+  <div class="d-flex flex-column border-end flex-shrink-1">
+    <table class="table table-bordered" style="table-layout:fixed; width: 130px !important;">
+      <thead>
+        <tr class="20_px_height">
+          <th width="100">APP</th>
+          <th width="170">Metrics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% App.order(created_at: :ASC).map do |app| %>
+          <tr width="270">
+            <td width="100" style="font-size: 12px !important;" rowspan="3">
+              <strong><%= app.tag.upcase %></strong><br />
+              <%= link_to "breakdown", app_path(app.id) %>
+            </td>
+            <td class="20_px_height">
+              <strong>Gross revenue</strong>
+            </td>
+          </tr>
+          <tr width="170">
+            <td class="20_px_height">
+              <%- if app.tag == 'QT' || app.tag == 'T2G' || app.tag == 'SK' %>
+                <span># New Trials</span>
+              <% else %>
+                <span>Trial Revenue</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr width="170" style="background: #e8fcee; ">
+            <td style="border-bottom: 2px solid #000000;" class="20_px_height">
+              <span>Net Revenue</span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex flex-column border-end flex-grow-1" style="overflow-x: auto;">
+    <table class="table table-hover table-bordered" style="table-layout:fixed;">
+      <thead>
+        <tr class="20_px_height">
+          <% @days.map do |day| %>
+            <th width="150" >
+              <% if day.date.present? %>
+                <%= day.date.strftime("%Y-%m-%d") %>
+              <% else %>
+                --
+              <% end %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% App.order(created_at: :ASC).map do |app| %>
+          <tr class="20_px_height">
+            <% @days.map do |day| %>
+              <td width="150" >
+                <% if day.date.present? %>
+                  <% current_amount = DailyMrr.subscribed_revenue(app.id, day.date) %>
+                  <% previous_amount = DailyMrr.subscribed_revenue(app.id, day.date - 1.day) %>
+                  <span style="color: <%= if current_amount.class == Float && previous_amount.class == Float && current_amount > previous_amount
+                                            "#198754"
+                                          elsif current_amount.class == Float && previous_amount.class == Float && current_amount < previous_amount
+                                            "#FF0000"
+                                          else
+                                            "#333333"
+                                          end %>;">
+                    $<%= number_with_precision(current_amount, precision: 2, delimiter: ",") || "--" %>
+                  </span>
+                <% else %>
+                  --
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+          <tr class="20_px_height">
+            <% @days.map do |day| %>
+              <td width="150" >
+                <% if day.date.present? %>
+                  <% current_trial = DailyMrr.trial_revenue(app.id, day.date) %>
+                  <% previous_trial = DailyMrr.trial_revenue(app.id, day.date - 1.day) %>
+                  <span style="color: 
+                  <% if current_trial.present? %>
+                    <% if current_trial > previous_trial %>
+                      #198754
+                    <% elsif current_trial < previous_trial %>
+                      #FF0000
+                    <% else %>
+                      #333333
+                    <% end %>
+                  <% else %>
+                    #FF0000
+                  <% end %>;">
+                    <%- if app.tag == 'QT' || app.tag == 'T2G' || app.tag == 'SK' %>
+                      <%= number_with_precision(current_trial, precision: 0, delimiter: ",") || "--" %>
+                    <% else %>
+                      $ <%= number_with_precision(current_trial, precision: 2, delimiter: ",") || "--" %>
+                    <% end %>
+                  </span>
+                <% else %>
+                  --
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+          <tr class="20_px_height" style="background: #e8fcee; ">
+            <% @days.map do |day| %>
+              <td width="150" style="border-bottom: 2px solid #000000;">
+                <% if day.date.present? %>
+                  <% current_net_mrr = Metric.net_revenue(app.id, day.date) %>
+                  <% previous_net_mrr = Metric.net_revenue(app.id, day.date - 1.day) %>
+                  <strong style="color: 
+                  <% if current_net_mrr.present? %>
+                    <% if current_net_mrr > previous_net_mrr %>
+                      #198754
+                    <% elsif current_net_mrr < previous_net_mrr %>
+                      #FF0000
+                    <% else %>
+                      #333333
+                    <% end %>
+                  <% else %>
+                    #FF0000
+                  <% end %>;">
+                    $<%= number_with_precision(current_net_mrr, precision: 2, delimiter: ",") || "--" %>
+                  </strong>
+                <% else %>
+                  --
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex flex-column border-end flex-shrink-1">
+    <table class="table table-bordered" style="table-layout:fixed; width: 320px !important">
+      <thead>
+        <tr class="20_px_height">
+          <th style="background: #9B81DD; color: #ffffff;" width="110" >14 days ago</th>
+          <th style="background: #8ECF3E; color: #ffffff;" width="110" >30 days ago</th>
+          <th style="background: #FC9212; color: #ffffff;" width="110" >90 days ago</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% App.order(created_at: :ASC).map do |app| %>
+          <tr class="20_px_height">
+            <td style="background: #9B81DD; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 14, app.id)["amount"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #8ECF3E; color: #ffffff;" width="110" ><%= number_with_precision(DailyMrr.mrr_on(Date.today - 30, app.id)["amount"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #FC9212; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 90, app.id)["amount"].to_f, precision: 2, delimiter: ",") %></td>
+          </tr>
+          <tr class="20_px_height">
+            <td style="background: #9B81DD; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 14, app.id)["trial"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #8ECF3E; color: #ffffff;" width="110" ><%= number_with_precision(DailyMrr.mrr_on(Date.today - 30, app.id)["trial"].to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #FC9212; color: #ffffff;" width="110" >$<%= number_with_precision(DailyMrr.mrr_on(Date.today - 90, app.id)["trial"].to_f, precision: 2, delimiter: ",") %></td>
+          </tr>
+          <tr class="20_px_height">
+            <td style="background: #9B81DD; color: #ffffff; font-weight: 600; font-size: 16px; border-bottom: 2px solid #000000;" width="110" >$<%= number_with_precision(Metric.net_revenue_on(Date.today - 14, app.id).to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #8ECF3E; color: #ffffff; font-weight: 600; font-size: 16px; border-bottom: 2px solid #000000;" width="110" ><%= number_with_precision(Metric.net_revenue_on(Date.today - 30, app.id).to_f, precision: 2, delimiter: ",") %></td>
+            <td style="background: #FC9212; color: #ffffff; font-weight: 600; font-size: 16px; border-bottom: 2px solid #000000;" width="110" >$<%= number_with_precision(Metric.net_revenue_on(Date.today - 90, app.id).to_f, precision: 2, delimiter: ",") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

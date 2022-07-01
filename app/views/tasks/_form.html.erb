@@ -1,0 +1,62 @@
+<%= form_with(model: task) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :assigned_by %>
+    <%= select_tag("task[assigned_by]", options_from_collection_for_select(Account.all, :user_id, :first_name), { prompt: "Assigner?" }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :assigned_to %>
+    <%= select_tag("task[assigned_to]", options_from_collection_for_select(Account.all, :user_id, :first_name), { prompt: "Assign to?" }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :task %>
+    <%= form.text_field :task %>
+  </div>
+
+  <div class="field">
+    <%= form.label :app_id %>
+    <%= select_tag("task[app_id]", options_from_collection_for_select(App.all, :id, :app_name), { prompt: "App?" }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.rich_text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :app_id %>
+    <%= select_tag("task[stage]", options_from_collection_for_select(TaskStage.all, :id, :stage), { prompt: "Stage?" }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :app_id %>
+    <%= select_tag("task[category]", options_from_collection_for_select(TaskCategory.all, :id, :category), { prompt: "Category?" }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :app_id %>
+    <%= select_tag("task[task_type]", options_from_collection_for_select(TaskType.all, :id, :name), { prompt: "Type?" }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.datetime_select :deadline %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

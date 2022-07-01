@@ -1,0 +1,63 @@
+<script>
+  jQuery(document).ready(($) => {
+    // Donut Chart
+      var donut_chart_demo = $("#donut-chart-demo");
+      donut_chart_demo.parent().show();
+
+    function draw_plan_revenue(){
+      var donut_chart_demo = $("#donut-chart-demo");
+      donut_chart_demo.parent().show();
+      var donut_chart = Morris.Donut({
+          element: 'donut-chart-demo',
+          data: [
+              <% @daily_count.map do |plan| %>
+                  <% plan = OpenStruct.new plan %>
+                  <% plan_amount = if (plan.amount.present? && plan.amount > 0)
+                        plan.amount
+                      else
+                        0
+                      end %>
+                  {
+                      label: "<%= plan.name %>",
+                      value: <%= plan_amount.round(2) %>
+                  },
+              <% end %>
+          ],
+      });
+      donut_chart_demo.parent().attr('style', '');
+    }
+
+    function draw_plan_users(){
+      var donut_chart = Morris.Donut({
+          element: 'donut-chart-demo',
+          data: [
+              <% @daily_count.map do |plan| %>
+                  <% plan = OpenStruct.new plan %>
+                  {
+                      label: "<%= plan.name %>",
+                      value: <%= plan.user_count.to_i %>
+                  },
+              <% end %>
+          ],
+      });
+      donut_chart_demo.parent().attr('style', '');
+    }
+
+    draw_plan_users()
+
+    $('.fetch_plan_metrics').on('change', (e)=>{
+      $(donut_chart_demo).empty()
+      
+      if($(e.target).val() == 'draw_plan_users'){
+        draw_plan_users()
+      }
+      else{
+        draw_plan_revenue()
+      }
+    })
+
+  })
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>

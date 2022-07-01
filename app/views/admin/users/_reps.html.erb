@@ -1,0 +1,75 @@
+<div class="col-sm-4">
+  <div class="rep_title mt-2">Support Reps (<%= rep_count() %>)</div>
+  <div class="support_reps_card mt-2">
+    <% Account.reps.map do |rep| %>
+      <div class="card d-flex flex-row align-items-center justify-continent-start p-2 my-1">
+        <span class="bg-warning d-flex align-items-center justify-content-center rounded-circle me-2" style="width: 40px; height: 40px;"><%= userinitials(rep.id) %></span>
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="d-flex flex-row align-items-center justify-content-center" style="width: 100%;">
+            <span class="flex-grow-1"><%= username(rep.id) %></span>
+            <span class="text-primary material-icons fs-6" style="cursor: pointer;" onclick="$('.user_form_<%= rep.id %>').show()">edit</span>
+          </div>
+          <div class="row mt-2 user_form_<%= rep.id %>" style="display: none; padding: 0px; margin: 0px;">
+            <form class="col-sm-6 direct_report_form" style="padding: 0px; margin: 0px;">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <%= hidden_field_tag :user_id, rep.user_id %>
+              <div class="input-group">
+                <%= select_tag("direct_report", options_from_collection_for_select(Account.jnr_ops, :user_id, :first_name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Direct Report", required: "required" }) %>
+                <button class="btn btn-primary material-icons">add</button>
+              </div>
+            </form>
+            <form class="col-sm-6 owner_form" style="padding: 0px; margin: 0px;">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <input type="hidden" name="owner[user_id]" value="<%= rep.user_id %>" />
+              <input type="hidden" name="owner[level]" value="1" />
+              <input type="hidden" name="owner[status]" value="1" />
+            <div class="input-group">
+              <%= select_tag("owner[app_id]", options_from_collection_for_select(App.all, :id, :app_name), { :class => "form-control", :placeholder => "Placeholder", prompt: "App?", required: "required" }) %>
+              <button class="btn btn-primary material-icons">update</button>
+            </div>
+          </form>
+          <div class="col-xs-12 d-flex flex-row justify-content-end mt-2">
+            <span class="text-primary material-icons fs-6" style="cursor: pointer;" onclick="$('.user_form_<%= rep.id %>').hide()">close</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
+<script>
+  $('.direct_report_form').on('submit', (e) => {
+      e.preventDefault()
+      $.ajax({
+          url: '<%= update_direct_report_url %>',
+          data: $('.direct_report_form').serialize(),
+          method: 'POST',
+          success: (response) => {
+              console.log(response)
+              $('[class*="user_form_"]').hide()
+              inform(response.message, response.type)
+          },
+          error: (error) => {
+              console.log(error)
+          },
+      })
+  })
+  
+  $('.owner_form').on('submit', (e) => {
+      e.preventDefault()
+      $.ajax({
+          url: '<%= owners_path %>',
+          data: $('.owner_form').serialize(),
+          method: 'POST',
+          success: (response) => {
+              console.log(response)
+              $('[class*="user_form_"]').hide()
+              inform(response.message, response.type)
+          },
+          error: (error) => {
+              console.log(error)
+          },
+      })
+  })
+</script>

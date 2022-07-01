@@ -1,0 +1,118 @@
+<div class="col-xs-12">
+  <div class="bg-info p-3 my-3 rounded card fs-6 no_app_alert" style="width: 100%;">You have not been added to any App. Contact your direct report or Jnr Ops manager to have them add you to the relevant apps</div>
+  <div class="card p-3 d-flex flex-row my-3">
+    <div class="d-flex flex-column pe-1 border-end flex-shrink-1">
+      <table class="table" style="width: 150px;">
+        <tr>
+          <td>Date</td>
+        </tr>
+        <tr>
+          <td onclick="display_form('request','review request')">Review Request</td>
+        </tr>
+        <tr>
+          <td onclick="display_form('received','received review')">Review Recieved</td>
+        </tr>
+        <tr>
+          <td onclick="display_form('chat','live chat')">Live Chat</td>
+        </tr>
+        <tr>
+          <td onclick="display_form('call','live call')">Live Call</td>
+        </tr>
+      </table>
+    </div>
+    <div class="flex-grow-1 d-flex flex-column align-items-start justify-content-center" style="overflow-x: auto;">
+
+      <form class="rep_form request_form ms-5" style="display: none;" data-category="">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <span class="h3 form_dynamic_title" style="width: 100%; text-align: center;"></span>
+        <hr />
+        <div class="d-flex flex-row border" style="border-radius: 10px;">
+          <span class="material-icons btn btn-warning d-flex align-items-center justify-content-center" onclick="$('.metrics_table').show();$('.rep_form').hide()" style="border-radius: 10px 0px 0px 10px;">cancel</span>
+          <div class="form-group form-floating">
+            <input type="text" name="metric_ticket" class="form-control" required="required" placeholder="Paste your ticket link here" style="border-radius: 0px;"/>
+            <label for="metric_ticket">Ticket link?</label>
+          </div>
+          <% if @my_apps.present? %>
+            <% if @my_apps.count > 1 %>
+              <div class="form-group form-floating">
+                <select name="app_id" class="form-control" placeholder="App">
+                  <% @my_apps.map do |app| %>
+                    <option value="<%= app.app_id %>"><%= App.find(app.app_id).app_name %></option>
+                  <% end %>
+                </select>
+                <label for="app_id">App?</label>
+              </div>
+            <% else %>
+              <input type="hidden" value="<%= Owner.find_by(user_id: @account.user_id).app_id %>" name="app_id">
+            <% end %>
+          <% end %>
+          <div class="form-group form-floating">
+            <input type="date" name="metric_date" class="form-control" required="required" placeholder="Paste your ticket link here to add call" style="border-radius: 0px;"/>
+            <label for="metric_date">date</label>
+          </div>
+          <button class="material-icons btn btn-primary" style="border-radius: 0px 10px 10px 0px;">send</button>
+        </div>
+      </form>
+      <img class="da_image ms-5" src="https://assets.ltvsaasgrowth.com/images/loader-1.gif" />
+
+    </div>
+  </div>
+</div>
+
+<script>
+  let category = ""
+  const display_form = (form, title) => {
+    category = form
+    $('.form_dynamic_title').html(`Add the ${title} ticket link and date below`)
+    $('.rep_form').show()
+    $('.rep_form').attr('data-category', form)
+    $('.metrics_table').hide()
+  }
+  
+  const load_rep_metrics_table = () => {
+    $('.metrics_table').remove()
+    $.ajax({
+      url: `<%= root_url %>load_rep_metrics_table/<%= @account.id %>`,
+      method: 'GET',
+      success: (response) => {
+        $(response).insertAfter($('.request_form'))
+        $('.da_image').hide()
+      }
+    })
+  }
+  
+  load_rep_metrics_table()
+  
+  $('.rep_form').on('submit', (e) => {
+    e.preventDefault()
+    $('.da_image').show()
+    $.ajax({
+        url: `<%= root_url %>rep_metrics_update/${category}`,
+        data: {
+            authenticity_token: $('[name="csrf-token"]')[0].content,
+            ticket: $('[name="metric_ticket"]').val(),
+            date: $('[name="metric_date"]').val(),
+            app_id: $('[name="app_id"]').val(),
+            user_id: '<%= @account.user_id %>'
+            },
+        method: 'POST',
+        success: (response) => {
+          $(e.target).data('category','')
+          category = ''
+          $(e.target)[0].reset()
+          $(e.target).hide()
+          load_rep_metrics_table()
+        },
+        error: (error) => {}
+    })
+  })
+</script>
+<% if @my_apps.blank? %>
+  <script>
+    $('.rep_form').html('<div class="bg-info p-3 my-3 rounded card fs-6 no_app_alert" style="width: 100%;">You need to be added to at least one app to add your metrics</div>')
+  </script>
+<% else %>
+  <script>
+    $('.no_app_alert').remove()
+  </script>
+<% end %>

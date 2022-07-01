@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html style="color: #000000 !important;">
+  <head>
+    <title>LTV SaaS Growth</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <% if (controller_name != "home") %>
+      <%= render "/layouts/header" %>
+      
+      <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+      <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <% end %>
+    <!-- Hotjar Tracking Code for My site -->
+    <script>
+      (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:2726600,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+  </head>
+
+  <body class="page-body page-fade" data-url="<%= root_url %>" style="color: #000000 !important; font-size: 16px !important;">
+    <script>
+      const base_url = '<%= root_url %>'
+      const reprioritize_tasks_path = '<%= reprioritize_tasks_path %>'
+    </script>
+    <div class="page-container sidebar-collapsed">
+      <% if controller_name != "mockup" %>
+        <% if controller_name != "home" && user_signed_in? %>
+          <%= render "/layouts/navbar" %>
+        <% end %>
+        <div class="main-content" style="margin-top : 0px !important; padding-top: 0px !important;">
+          <%= render "/layouts/main" %>
+        </div>
+      <% else %>
+        <%= render "/mockup/common/main" %>
+      <% end %>
+
+      <% if controller_name != "home" %>
+        <% if user_signed_in? && controller_name != "mockup" %>
+          <%= render "/layouts/chat" %>
+        <% end %>
+        
+        <%= render "/layouts/footer" %>
+      <% end %>
+
+      <%= render "/layouts/alerts" %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @task_checklist.task_id %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @task_checklist.item %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task_checklist.status %>
+</p>
+
+<p>
+  <strong>Added by:</strong>
+  <%= @task_checklist.added_by %>
+</p>
+
+<%= link_to "Edit", edit_task_checklist_path(@task_checklist) %> |
+<%= link_to "Back", task_checklists_path %>

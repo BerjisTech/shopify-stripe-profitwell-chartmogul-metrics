@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: MyText
+  app_id: 1
+  platform: MyString
+  slag: MyString
+
+two:
+  origin: MyText
+  app_id: 1
+  platform: MyString
+  slag: MyString

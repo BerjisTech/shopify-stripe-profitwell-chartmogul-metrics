@@ -1,0 +1,23 @@
+<div class="d-flex flex-row align-items-center justify-content-center border-bottom mockup-header">
+  <div class="logo px-3">
+    <img src="https://zohowebstatic.com/sites/default/files/ogimage/analytics-logo.png" style="height: 30px;"/>
+  </div>
+  <div class="flex-grow-1">
+  </div>
+  <div class="dropdown px-3">
+    <span class="dropdown-toggle material-icons rounded border p-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      manage_accounts
+    </span>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), method: :get, class: "nav-link dropdown-item" %></li>
+      <li><a class="dropdown-item" href="#">Apps</a></li>
+      <li><a class="dropdown-item" href="#">Businesses</a></li>
+      <li><a class="dropdown-item" href="#">Help</a></li>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, style: "display:  flex; align-items: center;", class: "nav-link dropdown-item" do %>
+          Log Out <i class="material-icons right" style="font-size: 15px;">logout</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

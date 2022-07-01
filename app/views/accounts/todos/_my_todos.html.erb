@@ -1,0 +1,11 @@
+<% @todos.map do |todo| %>
+  <div class="to_do_block">
+    <% timer = OpenStruct.new Todo.deadline(todo.done, todo.deadline) %>
+    <%= timer.icon.html_safe %>
+    <span>
+      <%= todo.to_do %>
+    </span>
+    <span class="to_do_updater"><input onchange="updateToDo('<%= todo.id %>', <%= timer.done_update %>)" type="checkbox" name="toggle" <%= timer.todo_state %> /></span>
+    <%= timer.days_remaining.html_safe %>
+  </div>
+<% end %>

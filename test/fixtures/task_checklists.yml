@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 
+  item: MyText
+  status: 1
+  added_by: 
+
+two:
+  task_id: 
+  item: MyText
+  status: 1
+  added_by: 

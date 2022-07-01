@@ -1,0 +1,19 @@
+
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_member.group_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @group_member.user_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @group_member.status %>
+</p>
+
+<%= link_to "Edit", edit_group_member_path(@group_member) %> |
+<%= link_to "Back", group_members_path %>

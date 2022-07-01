@@ -1,0 +1,27 @@
+<%= form_with(model: group_member) do |form| %>
+  <% if group_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group_member.errors.count, "error") %> prohibited this group_member from being saved:</h2>
+
+      <ul>
+        <% group_member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-sm-6">
+    <%= form.number_field :group_id, value: session[:current_app_group], type: :hidden %>
+
+    <div class="field form-group">
+      <%= select_tag("group[user_id]", options_from_collection_for_select(Account.all, :user_id, :first_name), { :class => "form-control", :placeholder => "Placeholder" }) %>
+      <%= form.label :user_id %>
+    </div>
+
+    <%= form.number_field :status, value: 1, type: :hidden %>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

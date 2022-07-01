@@ -1,0 +1,58 @@
+<div class="col-sm-6">
+  <%= form_with(model: app) do |form| %>
+    <% if app.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(app.errors.count, "error") %> prohibited this app from being saved:</h2>
+
+        <ul>
+          <% app.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field form-group">
+      <%= form.label :app_name %>
+      <%= form.text_field :app_name, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :app_code %>
+      <%= form.number_field :app_code, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :partner_id %>
+      <%= form.number_field :partner_id, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :api_key %>
+      <%= form.text_area :api_key, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :secondary_api_key %>
+      <%= form.text_area :secondary_api_key, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :app_group_id %>
+      <%= select_tag("app[app_group_id]", options_from_collection_for_select(AppGroup.all, :id, :group_name), { :class => "form-control", :placeholder => "Placeholder" }) %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :data_point %>
+      <%= form.text_field :data_point, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :tag %>
+      <%= form.text_field :tag, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

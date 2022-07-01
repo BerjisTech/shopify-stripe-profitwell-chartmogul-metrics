@@ -1,0 +1,27 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="<%= @weeks.count %>" class="text-center">Chats for <%= Date.today.strftime("%B") %></th>
+    </tr>
+    <tr>
+      <% @weeks.map do |week| %>
+        <% week = week.compact %>
+        <th>
+          <div style="text-align: center; width: 90px !important;"><%= week.first.ordinalize %>-<%= week.last.ordinalize %></div>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reps.map do |rep| %>
+      <tr>
+        <% @weeks.each_with_index.map do |week, index| %>
+          <% week = week.compact %>
+          <td class="text-center">
+            <%= Chat.where(user_id: rep.user_id, date: Date.new(@y, @m, week.first)..Date.new(@y, @m, week.last)).count %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

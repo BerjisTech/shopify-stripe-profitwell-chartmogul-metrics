@@ -1,0 +1,75 @@
+<div class="col-sm-12 panel panel-primary" id="charts_env">
+  <div class="panel-heading">
+    <div class="panel-title">Site Stats (Last 7 days)</div>
+
+    <div class="panel-options">
+      <ul class="nav nav-tabs" id="chart_tabs" role="tablist">
+        <li role="presentation" class="nav-item active"><a class="nav-link active" data-bs-toggle="tab" href="#line-chart" id="mrr-tab" aria-controls="line-chart" aria-selected="true">Paying vs Trial MRR</a></li>
+        <li role="presentation" class="nav-item "><a class="nav-link" data-bs-toggle="tab" href="#pie-chart" id="plans-tab" aria-controls="pie-chart" aria-selected="false">Plan Revenue comparison</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div class="tab-content" id="chart_tabs_content">
+      <div role="tabpanel" class="tab-pane  fade show active" id="line-chart" style="" aria-labelledby="mrr-tab">
+        <%= render "apps/data/bar" %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade" id="pie-chart" style="" aria-labelledby="plans-tab">
+        <%= render "apps/data/pie" %>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-responsive">
+    <thead>
+      <tr>
+        <th>
+          <div class="d-flex justify-content-between">
+            <div class="pull-left">
+              <div class="h4 no-margin">Paid Gross MRR</div>
+              <small>
+                <% if @mrr.empty? %>
+                  0
+                <% else %>
+                  $ <%= @mrr.last.amount.round(2) || 0 %>
+                <% end %>
+              </small>
+            </div>
+            <span class="pull-right pageviews">
+              <% @mrr.map do |mrr| %>
+                <% mrr_amount = if mrr.amount.present?
+                       mrr.amount
+                     else
+                       0
+                     end %>
+                <%= mrr_amount.round(2) %>,
+              <% end %>
+            </span>
+          </div>
+        </th>
+
+        <th>
+          <div class="d-flex justify-content-between">
+            <div>
+              <div class="h4 no-margin">User count</div>
+              <small>
+                <% if @users.empty? %>
+                  0
+                <% else %>
+                  <%= @users.first.total_count || 0 %>
+                <% end %>
+              </small>
+            </div>
+            <span class="uniquevisitors">
+              <% @users.map do |user| %>
+                <%= user.total_count %>,
+              <% end %>
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>

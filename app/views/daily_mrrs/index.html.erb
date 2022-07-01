@@ -1,0 +1,29 @@
+<h1>Daily Mrrs</h1>
+
+<table class="table table-responsive table-hover">
+  <thead class="table-dark bg-dark">
+    <tr>
+      <th>App</th>
+      <th>Level</th>
+      <th>Paid MRR</th>
+      <th>Trial MRR</th>
+      <th>ARR MRR</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daily_mrrs.each do |daily_mrr| %>
+      <tr>
+        <td><%= daily_mrr.app_id %></td>
+        <td><%= daily_mrr.level %></td>
+        <td><%= daily_mrr.amount %></td>
+        <td><%= daily_mrr.trial %></td>
+        <td><%= daily_mrr.arr %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Daily Mrr", new_daily_mrr_path %>

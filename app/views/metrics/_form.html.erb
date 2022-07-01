@@ -1,0 +1,127 @@
+<%= form_with(model: metric) do |form| %>
+  <% if metric.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(metric.errors.count, "error") %> prohibited this metric from being saved:</h2>
+
+      <ul>
+        <% metric.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mrr %>
+    <%= form.text_field :mrr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :net_revenue %>
+    <%= form.text_field :net_revenue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fees %>
+    <%= form.text_field :fees %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_revenue %>
+    <%= form.text_field :other_revenue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avg_revenue_per_user %>
+    <%= form.text_field :avg_revenue_per_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arr %>
+    <%= form.text_field :arr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ltv %>
+    <%= form.text_field :ltv %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mrr_growth_rate %>
+    <%= form.text_field :mrr_growth_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_churn %>
+    <%= form.text_field :user_churn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :revenue_churn %>
+    <%= form.text_field :revenue_churn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quick_ratio %>
+    <%= form.text_field :quick_ratio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active_customers %>
+    <%= form.number_field :active_customers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :new_customers %>
+    <%= form.number_field :new_customers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reactivations %>
+    <%= form.number_field :reactivations %>
+  </div>
+
+  <div class="field">
+    <%= form.label :new_subscriptions %>
+    <%= form.number_field :new_subscriptions %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active_subscriptions %>
+    <%= form.number_field :active_subscriptions %>
+  </div>
+
+  <div class="field">
+    <%= form.label :upgrades %>
+    <%= form.number_field :upgrades %>
+  </div>
+
+  <div class="field">
+    <%= form.label :downgrades %>
+    <%= form.number_field :downgrades %>
+  </div>
+
+  <div class="field">
+    <%= form.label :churned_customers %>
+    <%= form.number_field :churned_customers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coupons_redeemed %>
+    <%= form.text_field :coupons_redeemed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :failed_charges %>
+    <%= form.number_field :failed_charges %>
+  </div>
+
+  <div class="field">
+    <%= form.label :refunds %>
+    <%= form.text_field :refunds %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

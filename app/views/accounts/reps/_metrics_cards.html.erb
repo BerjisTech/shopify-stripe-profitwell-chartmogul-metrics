@@ -1,0 +1,72 @@
+<div class="col-sm-3 col-xs-6">
+  <div class="rep_metrics_card d-flex flex-row align-items-center justify-content-center p-3 mb-2 card">
+    <div class="rep_metrics_numbers flex-grow-1 d-flex flex-column">
+      <span class="text-success"><%= Account.request_percent_increase(@account.user_id).change.to_f.round(1) %>%<em class="material-icons">north</em></span>
+      <span>Reviews Requests This Week</span>
+      <span><%= Account.request_percent_increase(@account.user_id).difference %></span>
+    </div>
+    <div class="rep_metrics_progress">
+      <div class="c100 p<%= Account.request_percent_increase(@account.user_id).change.ceil %> default green">
+        <span><%= Account.request_percent_increase(@account.user_id).change.round(1) %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-3 col-xs-6">
+  <div class="rep_metrics_card d-flex flex-row align-items-center justify-content-center p-3 mb-2 card">
+    <div class="rep_metrics_numbers flex-grow-1 d-flex flex-column">
+      <span class="text-success"><%= Account.received_percent_increase(@account.user_id).change.to_f.round(1) %>%<em class="material-icons">north</em></span>
+      <span>Reviews Received This Week</span>
+      <span><%= Account.received_percent_increase(@account.user_id).difference %></span>
+    </div>
+    <div class="rep_metrics_progress">
+      <div class="c100 p<%= Account.received_percent_increase(@account.user_id).change.ceil %> default green">
+        <span><%= Account.received_percent_increase(@account.user_id).change %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-3 col-xs-6">
+  <div class="rep_metrics_card d-flex flex-row align-items-center justify-content-center p-3 mb-2 card">
+    <div class="rep_metrics_numbers flex-grow-1 d-flex flex-column">
+      <span class="text-success"><%= Account.call_percent_increase(@account.user_id).change.round(2) %>%<em class="material-icons">north</em></span>
+      <span>Live Calls This Week</span>
+      <span><%= Account.call_percent_increase(@account.user_id).difference %></span>
+    </div>
+    <div class="rep_metrics_progress">
+      <div class="c100 p<%= Account.call_percent_increase(@account.user_id).change.ceil %> default green">
+        <span><%= Account.call_percent_increase(@account.user_id).change.round(2) %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-3 col-xs-6">
+  <div class="rep_metrics_card d-flex flex-row align-items-center justify-content-center p-3 mb-2 card">
+    <div class="rep_metrics_numbers flex-grow-1 d-flex flex-column">
+      <span class="text-success"><%= Account.chat_percent_increase(@account.user_id).change.round(2) %>%<em class="material-icons">north</em></span>
+      <span>Live Chats Week</span>
+      <span><%= Account.chat_percent_increase(@account.user_id).difference %></span>
+    </div>
+    <div class="rep_metrics_progress">
+      <div class="c100 p<%= Account.chat_percent_increase(@account.user_id).change.ceil %> default green">
+        <span><%= Account.chat_percent_increase(@account.user_id).change.round(2) %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

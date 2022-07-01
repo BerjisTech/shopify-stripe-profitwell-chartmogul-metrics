@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop_name: MyText
+  shop_domain: MyText
+  shop_email: MyText
+  shop_country: MyString
+  shop_plan: MyString
+  install_date: 2021-10-30 22:21:27
+
+two:
+  shop_name: MyText
+  shop_domain: MyText
+  shop_email: MyText
+  shop_country: MyString
+  shop_plan: MyString
+  install_date: 2021-10-30 22:21:27

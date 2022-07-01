@@ -1,0 +1,78 @@
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Product%20Customizer/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/In%20Cart%20Upsell/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/TrackifyX/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Preorder%20Now/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Bulk%20Discount%20Now/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Wholesale%20Pricing%20Now/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Sticky%20Add%20To%20Cart%20Booster/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Preorderly/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Upselly/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Sales%20Rocket/user
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Product%20Customizer/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/In%20Cart%20Upsell/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/TrackifyX/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Preorder%20Now/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Bulk%20Discount%20Now/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Wholesale%20Pricing%20Now/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Sticky%20Add%20To%20Cart%20Booster/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Preorderly/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Upselly/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_daily_data/Sales%20Rocket/financials
+
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Product%20Customizer/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/In%20Cart%20Upsell/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/TrackifyX/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Preorder%20Now/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Bulk%20Discount%20Now/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Wholesale%20Pricing%20Now/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Sticky%20Add%20To%20Cart%20Booster/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Preorderly/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Upselly/financials
+/usr/bin/curl https://ltvsaasgrowth.com/import/shopify_monthly_data/Sales%20Rocket/financials
+
+
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/dothefuckingupdatationismificatoionation >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Product%20Customizer/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/In%20Cart%20Upsell/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/TrackifyX/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Preorder%20Now/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Bulk%20Discount%20Now/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Wholesale%20Pricing%20Now/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Sticky%20Add%20To%20Cart%20Booster/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Preorderly/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Upselly/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Sales%20Rocket/user >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Product%20Customizer/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/In%20Cart%20Upsell/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/TrackifyX/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Preorder%20Now/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Bulk%20Discount%20Now/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Wholesale%20Pricing%20Now/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Sticky%20Add%20To%20Cart%20Booster/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Preorderly/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Upselly/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_daily_data/Sales%20Rocket/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+0 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Product%20Customizer/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+05 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/In%20Cart%20Upsell/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+01 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/TrackifyX/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+15 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Preorder%20Now/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+02 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Bulk%20Discount%20Now/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+25 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Wholesale%20Pricing%20Now/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+03 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Sticky%20Add%20To%20Cart%20Booster/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+35 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Preorderly/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+04 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Upselly/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+45 12 * * * /usr/bin/curl --silent https://ltvsaasgrowth.com/import/shopify_monthly_data/Sales%20Rocket/financials >> /home/prometheus/ltvsaasgrowth/current/log/whenever.log 2>&1
+
+
+pg_dump -F c -v -U prometheus -h localhost ltvsaasgrowth_production -f /tmp/ltvsaasgrowth.psql
+
+PGPASSWORD=rKg7lOTeN0bkbMFo pg_restore -U doadmin -h db-postgresql-nyc3-55185-do-user-9453444-0.b.db.ondigitalocean.com -p 25060 -d defaultdb 
+
+username = doadmin
+password = rKg7lOTeN0bkbMFo
+host = db-postgresql-nyc3-55185-do-user-9453444-0.b.db.ondigitalocean.com
+port = 25060
+database = defaultdb
+sslmode = require
+
+postgresql://prometheus:nvNSMZClWubaemfj@db-postgresql-nyc3-55185-do-user-9453444-0.b.db.ondigitalocean.com:25060/ltvsaasgrowth_production?sslmode=require

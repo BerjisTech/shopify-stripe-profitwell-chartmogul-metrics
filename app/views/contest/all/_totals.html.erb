@@ -1,0 +1,39 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="4" class="text-center">Total for <%= Date.today.strftime("%B") %></th>
+    </tr>
+    <tr>
+      <th>
+        <div style="text-align: center; width: 90px !important;">Asks</div>
+      </th>
+      <th>
+        <div style="text-align: center; width: 90px !important;">Received</div>
+      </th>
+      <th>
+        <div style="text-align: center; width: 90px !important;">Sessions</div>
+      </th>
+      <th>
+        <div style="text-align: center; width: 90px !important;">Chats</div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reps.map do |rep| %>
+      <tr>
+        <td>
+          <%= Review.where(user_id: rep.user_id, level: 1, requested_on: Date.new(@y, @m, @weeks.first.compact.first)..Date.new(@y, @m, @weeks.last.compact.last)).count %>
+        </td>
+        <td>
+          <%= Review.where(user_id: rep.user_id, level: 2, received_on: Date.new(@y, @m, @weeks.first.compact.first)..Date.new(@y, @m, @weeks.last.compact.last)).count %>
+        </td>
+        <td>
+          <%= Call.where(user_id: rep.user_id, date: Date.new(@y, @m, @weeks.first.compact.first)..Date.new(@y, @m, @weeks.last.compact.last)).count %>
+        </td>
+        <td>
+          <%= Chat.where(user_id: rep.user_id, date: Date.new(@y, @m, @weeks.first.compact.first)..Date.new(@y, @m, @weeks.last.compact.last)).count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

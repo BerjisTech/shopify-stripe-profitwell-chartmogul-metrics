@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @blocker.item %>
+</p>
+
+<p>
+  <strong>Added by:</strong>
+  <%= @blocker.added_by %>
+</p>
+
+<%= link_to "Edit", edit_blocker_path(@blocker) %> |
+<%= link_to "Back", blockers_path %>

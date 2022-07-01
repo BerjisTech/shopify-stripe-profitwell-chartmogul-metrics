@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>.</th>
+    </tr>
+    <tr>
+      <th class="text-center">
+        Customer Hero
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reps.map do |rep| %>
+      <tr>
+        <td>
+          <div style="display: table !important; width: 350px !important;">
+            <%= "#{rep.first_name} #{rep.last_name} (#{Account.owned_apps(rep.user_id)})" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

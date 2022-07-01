@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>App:</strong>
+  <%= @api.app_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @api.name %>
+</p>
+
+<p>
+  <strong>Endpoint:</strong>
+  <%= @api.endpoint %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @api.key %>
+</p>
+
+<p>
+  <strong>Secret:</strong>
+  <%= @api.secret %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @api.password %>
+</p>
+
+<p>
+  <strong>Secondary:</strong>
+  <%= @api.secondary %>
+</p>
+
+<%= link_to "Edit", edit_api_path(@api) %> |
+<%= link_to "Back", apis_path %>

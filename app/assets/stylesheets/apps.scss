@@ -1,0 +1,134 @@
+// Place all the styles related to the apps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.app_main {
+    margin       : 0px;
+    margin-left  : -18px;
+    padding-right: 0px !important;
+    border-right : 1px solid #c0c0c0;
+}
+
+.tile-stats {
+    .icon {
+        right : 5px !important;
+        bottom: 20px !important;
+    }
+}
+
+.app_welcome {
+    display         : flex;
+    flex-direction  : column;
+    background-image: url('https://assets.ltvsaasgrowth.com/images/black_gradient.jpg');
+    background-size : cover;
+    padding         : 50px 50px 100px 50px;
+
+    .app_name {
+        font-size    : 30px;
+        color        : #ffffff;
+        font-weight  : 700;
+        margin-bottom: 20px;
+    }
+
+    .overview {
+        font-size  : 16px;
+        font-weight: 600;
+        color      : #ffffff;
+    }
+}
+
+.app_numbers {
+    margin-top     : -70px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+
+    [class*="app_number_"] {
+        width                  : 33.3333%;
+        background             : rgba(255, 255, 255, 1);
+        box-shadow             : 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        backdrop-filter        : blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius          : 10px;
+        border                 : 1px solid rgba(255, 255, 255, 0.18);
+        display                : flex;
+        align-items            : center;
+        padding                : 10px;
+        margin                 : 20px;
+
+        &:first-of-type {
+            .material-icons {
+                color : #2153DB;
+                border: 3px solid #4f74da;
+            }
+        }
+
+        &:nth-child(2) {
+            .material-icons {
+                color : #2EB3BD;
+                border: 3px solid #6eb7bd;
+            }
+        }
+
+        &:last-of-type {
+            .material-icons {
+                color : #FC9212;
+                border: 3px solid #fabf77;
+            }
+        }
+
+        .material-icons {
+            height         : 40px;
+            width          : 40px;
+            border-radius  : 100%;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+        }
+
+        .details {
+            display       : flex;
+            flex-direction: column;
+            padding-left  : 10px;
+
+            span {
+                &:first-of-type {
+                    color: #646464;
+                }
+
+                &:last-of-type {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 589px) {
+    [class*="app_number_"] {
+        margin: 10px !important
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    [class*="app_number_"] {
+        margin: 5px !important
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    [class*="app_number_"] {
+        span {
+            &:last-of-type {
+                font-size: 20px !important;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    [class*="app_number_"] {
+        flex-direction : column !important;
+        justify-content: center;
+    }
+}

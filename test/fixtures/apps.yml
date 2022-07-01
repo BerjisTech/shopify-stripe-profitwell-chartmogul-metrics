@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_name: MyString
+  app_code: 1
+  partner_id: 1
+  api_key: MyText
+  secondary_api_key: MyText
+
+two:
+  app_name: MyString
+  app_code: 1
+  partner_id: 1
+  api_key: MyText
+  secondary_api_key: MyText

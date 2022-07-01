@@ -1,0 +1,25 @@
+<div class="row" style="margin: 0px !important; padding: 0px !important; border-bottom: 1px solid #c0c0c0;">
+  <div class="col-md-12" style="margin : 0px !important; padding: 0px !important;">
+    <ul class="d-flex justify-content-end list-inline links-list pull-right" style="margin : 0px !important; padding: 0px !important;">
+      <% if controller_name.humanize == "Accounts" && @account.present? && current_user.id == @account.user_id %>
+        <li><%= link_to "Edit Account", edit_account_path(@account), class: "nav-link" %></li>
+        <li class="sep"></li>
+        <li><%= link_to "Update Email and Password", edit_user_registration_path, class: "nav-link" %></li>
+        <li class="sep"></li>
+      <% else %>
+        <li><%= link_to "Account", account_path(Account.where(user_id: current_user.id).last.id), method: :get, class: "nav-link" %></li>
+        <li class="sep"></li>
+      <% end %>
+      <li> <a href="#" data-toggle="chat" data-collapse-sidebar="1" class="nav-link"> <i class="entypo-chat"></i>
+          Notes</a> </li>
+
+      <li class="sep"></li>
+
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, style: "display:  flex; align-items: center;", class: "nav-link" do %>
+          Log Out <i class="material-icons right" style="font-size: 15px;">logout</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

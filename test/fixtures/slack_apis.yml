@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_bot_token: MyText
+  current_user_token: MyText
+  current_user_rotation: MyText
+  current_bot_rotation: MyText
+
+two:
+  current_bot_token: MyText
+  current_user_token: MyText
+  current_user_rotation: MyText
+  current_bot_rotation: MyText

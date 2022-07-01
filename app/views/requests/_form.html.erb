@@ -1,0 +1,37 @@
+<%= form_with(model: request) do |form| %>
+  <% if request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+        <% request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :requested_by %>
+    <%= form.number_field :requested_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requested_from %>
+    <%= form.number_field :requested_from %>
+  </div>
+
+  <div class="field">
+    <%= form.label :request %>
+    <%= form.rich_text_area :request %>
+  </div>
+
+  <div class="field">
+    <%= form.label :provided %>
+    <%= form.text_field :provided %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

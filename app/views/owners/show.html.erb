@@ -1,0 +1,24 @@
+
+
+<p>
+  <strong>App:</strong>
+  <%= @owner.app_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @owner.user_id %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @owner.level %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @owner.status %>
+</p>
+
+<%= link_to "Edit", edit_owner_path(@owner) %> |
+<%= link_to "Back", owners_path %>

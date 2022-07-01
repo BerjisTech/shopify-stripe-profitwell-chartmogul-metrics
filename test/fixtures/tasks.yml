@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  assigned_by: 1
+  assigned_to: 1
+  task: MyString
+  description: MyText
+  deadline: 2021-09-28 10:21:41
+
+two:
+  assigned_by: 1
+  assigned_to: 1
+  task: MyString
+  description: MyText
+  deadline: 2021-09-28 10:21:41

@@ -1,0 +1,41 @@
+<%= form_with(model: review) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-sm-6">
+    <%= form.number_field :app_id, value: session[:current_app], type: :hidden %>
+
+    <div class="field form-group">
+      <%= form.text_field :rating, class: "form-control", required: "required" %>
+      <%= form.label :rating %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.number_field :user_id, class: "form-control", required: "required" %>
+      <%= form.label :user_id %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.text_field :ticket, class: "form-control", required: "required" %>
+      <%= form.label :ticket %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.rich_text_area :comment, class: "form-control", required: "required" %>
+      <%= form.label :comment %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

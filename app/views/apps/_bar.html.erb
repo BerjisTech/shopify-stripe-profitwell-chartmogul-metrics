@@ -1,0 +1,58 @@
+<script>
+  jQuery(document).ready(($) => {
+    $('body').addClass('gray')
+  
+    $('.pageviews').sparkline('html', {type: 'bar', height: '30px', barColor: '#ff6264'} );
+    $('.uniquevisitors').sparkline('html', {type: 'bar', height: '30px', barColor: '#00b19d'} );
+  
+    var bar_chart_demo = $("#bar-chart-demo");
+  
+    let draw_graph = (transactions) => {
+      $(bar_chart_demo).empty()
+      var bar_chart = Morris.Bar({
+          element: 'bar-chart-demo',
+          data: transactions,
+          xkey: 'y',
+          ykeys: ['a','b'],
+          labels: ['Premium','Trial'],
+          barColors: ['#149DA8','#D37A0D'],
+          redraw: true,
+          stacked: true
+      });
+      bar_chart_demo.parent().attr('style', '');
+    }
+  
+    let fetch_graph_data = (app_id, from, to) => {
+        $(bar_chart_demo).html('<div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;"><img src="http://assets.prycely.com/images/preloader.gif" style="width: auto; height: 100%;"></div>')
+        $.ajax({
+            url: '<%= fetch_app_graph_data_path %>',
+            method: 'POST',
+            data: {
+                'authenticity_token': $('[name="csrf-token"]')[0].content,
+                'app_id': app_id,
+                'from': from,
+                'to': to
+            },
+            success: (response) => {
+                console.log(response)
+                $('.revenue_title_text').html(`Revenue last ${from} days`)
+                if (response.type == 'error' || response.type == 'info') {
+                  $(bar_chart_demo).html(`<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">${response.message}</div>`)
+                }
+                else{
+                  draw_graph(response.data)
+                }
+            },
+            error: (response) => {
+                $(bar_chart_demo).html('<div style="width: 100%; height: 100%;" class="m-3 p-3 d-flex align-items-center justify-content-center">There has been an error fetching your transactions</div>')
+            }
+        })
+    }
+  
+    $('.fetch_metrics').on('change', (e) => {
+      fetch_graph_data('<%= @app.id %>', $(e.target).val(), 0)
+    })
+  
+    fetch_graph_data('<%= @app.id %>', 7, 0)
+  })
+</script>

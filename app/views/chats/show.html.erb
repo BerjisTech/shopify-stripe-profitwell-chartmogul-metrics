@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @chat.user_id %>
+</p>
+
+<p>
+  <strong>Chat link:</strong>
+  <%= @chat.chat_link %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @chat.date %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @chat.comment %>
+</p>
+
+<%= link_to "Edit", edit_chat_path(@chat) %> |
+<%= link_to "Back", chats_path %>

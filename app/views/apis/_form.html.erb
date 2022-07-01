@@ -1,0 +1,62 @@
+<%= form_with(model: api) do |form| %>
+  <% if api.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(api.errors.count, "error") %> prohibited this api from being saved:</h2>
+
+      <ul>
+        <% api.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-sm-6">
+    <div class="field form-group">
+      <%= form.label :app_id %>
+      <%= select_tag("api[app_id]", options_from_collection_for_select(App.order(id: :asc), :id, :app_name), { :class => "form-control select2", :placeholder => "Placeholder" }) %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :key %>
+      <%= form.text_field :key, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :secret %>
+      <%= form.text_field :secret, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :password %>
+      <%= form.text_field :password, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :secondary %>
+      <%= form.text_field :secondary, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :endpoint %>
+      <%= form.text_field :endpoint, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :partner_id %>
+      <%= form.text_field :partner_id, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :app_code %>
+      <%= form.text_field :app_code, class: "form-control" %>
+    </div>
+
+    <div class="actions form-group">
+      <%= form.submit class: "btn btn-blue" %>
+    </div>
+  <% end %>

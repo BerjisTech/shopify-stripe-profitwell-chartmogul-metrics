@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Requested by:</strong>
+  <%= @request.requested_by %>
+</p>
+
+<p>
+  <strong>Requested from:</strong>
+  <%= @request.requested_from %>
+</p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @request.request %>
+</p>
+
+<p>
+  <strong>Provided:</strong>
+  <%= @request.provided %>
+</p>
+
+<%= link_to "Edit", edit_request_path(@request) %> |
+<%= link_to "Back", requests_path %>

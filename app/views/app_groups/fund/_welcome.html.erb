@@ -1,0 +1,28 @@
+<div class="fund_welcome">
+  <span class="fund_name"><%= @app_group.group_name %></span>
+  <span class="overview">Overview</span>
+</div>
+
+<div class="fund_numbers">
+  <div class="fund_number_mrr">
+    <span class="material-icons">addchart</span>
+    <div class="details">
+      <span><%= @app_group.group_name %> MRR</span>
+      <span>$ <%= number_with_precision(@fund_mrr, precision: 2, delimiter: ",", separator: ".") %></span>
+    </div>
+  </div>
+  <div class="fund_number_trial">
+    <span class="material-icons">group_add</span>
+    <div class="details">
+      <span><%= @app_group.group_name %> Trial</span>
+      <span>$ <%= number_with_precision(@fund_trial, precision: 2, delimiter: ",", separator: ".") %></span>
+    </div>
+  </div>
+  <div class="fund_number_users">
+    <span class="material-icons">groups</span>
+    <div class="details">
+      <span><%= @app_group.group_name %> Users</span>
+      <span><%= number_with_precision(@fund_users, precision: 0, delimiter: ",", separator: ".") %></span>
+    </div>
+  </div>
+</div>

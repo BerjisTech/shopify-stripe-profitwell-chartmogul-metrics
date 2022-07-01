@@ -1,0 +1,23 @@
+<div class="row mt-3">
+  <div class="col-sm-2">
+    <%= render "accounts/reps/management_card" %>
+  </div>
+  <div class="col-sm-10">
+    <% if @account.role_id == Role.find_by(name: "Admin").id || @account.role_id == Role.find_by(name: "Customer Hero").id %>
+      <%= render "accounts/reps/index" %>
+    <% end %>
+    <div class="row mt-2">
+      <div class="col-sm-4">
+        <%= render "accounts/todos/index" %>
+      </div>
+      <div class="col-sm-4">
+        <%= render "accounts/tasks/index" %>
+      </div>
+      <div class="col-sm-4">
+        <%= render "accounts/requests/index" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "accounts/js" %>

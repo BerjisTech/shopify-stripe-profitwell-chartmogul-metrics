@@ -1,0 +1,18 @@
+<div class="account_block">
+  <div class="account_block_title">
+    <span>Requests</span>
+    <span class="material-icons">help_outline</span>
+  </div>
+  <div class="account_block_content">
+    <form class="request_content_form">
+      <input type="text" name="request[request]" placeholder="Type your request" required />
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= select_tag("request[app_id]", options_from_collection_for_select(App.all, :id, :app_name), { :class => "form-control", :placeholder => "Placeholder", prompt: "App?" }) %>
+      <%= select_tag("request[requested_from]", options_from_collection_for_select(Account.all, :user_id, :first_name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Request from?", required: "required" }) %>
+    </form>
+  </div>
+</div>
+<%= render "accounts/requests/js" %>
+<script>
+  load_requests()
+</script>

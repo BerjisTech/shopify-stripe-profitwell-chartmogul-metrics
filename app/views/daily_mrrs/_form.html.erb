@@ -1,0 +1,31 @@
+<%= form_with(model: daily_mrr) do |form| %>
+  <% if daily_mrr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(daily_mrr.errors.count, "error") %> prohibited this daily_mrr from being saved:</h2>
+
+      <ul>
+        <% daily_mrr.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-sm-6">
+    <%= form.number_field :app_id, value: session[:current_app], type: :hidden %>
+
+    <div class="field form-group">
+      <%= form.number_field :level, class: "form-control", required: "required" %>
+      <%= form.label :level %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.text_field :amount, class: "form-control", required: "required" %>
+      <%= form.label :amount %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

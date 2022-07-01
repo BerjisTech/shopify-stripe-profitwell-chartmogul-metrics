@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @task_follower.task_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task_follower.user_id %>
+</p>
+
+<%= link_to "Edit", edit_task_follower_path(@task_follower) %> |
+<%= link_to "Back", task_followers_path %>

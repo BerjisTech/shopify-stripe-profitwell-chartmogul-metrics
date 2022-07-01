@@ -1,0 +1,60 @@
+// Place all the styles related to the mockup controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.mockup {
+    height    : 100vh;
+    width     : 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    .mockup-header {
+        height: 7vh;
+        width : 100vw;
+    }
+
+    .mockup-main {
+        height: 93vh;
+        width : 100vw;
+
+        .mockup-nav {
+            height    : 93vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #fff9f9;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #6a686b;
+                border-radius   : 6px;
+                border          : 1px solid #bebebe;
+            }
+        }
+
+        .mockup-content {
+            height    : 93vh;
+            overflow-x: auto;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #fff9f9;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #6a686b;
+                border-radius   : 6px;
+                border          : 1px solid #bebebe;
+            }
+        }
+    }
+}

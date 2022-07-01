@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_id: 1
+  website: MyText
+  email: MyText
+  event: MyText
+  time: 2021-07-30 23:22:03
+
+two:
+  app_id: 1
+  website: MyText
+  email: MyText
+  event: MyText
+  time: 2021-07-30 23:22:03

@@ -1,0 +1,55 @@
+<div class="row">
+  <%= form_with(model: big_rock) do |form| %>
+    <% if big_rock.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(big_rock.errors.count, "error") %> prohibited this big_rock from being saved:</h2>
+
+        <ul>
+          <% big_rock.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="field form-floating mb-3 col-6">
+          <%= select_tag("big_rock[owner]", options_from_collection_for_select(Account.all, :user_id, :first_name), { :class => "form-control", :placeholder => "Placeholder", prompt: "Rock owner", required: "required" }) %>
+          <%= form.label :owner %>
+        </div>
+
+        <div class="field form-floating mb-3 col-6">
+          <%= select_tag("big_rock[category]", options_from_collection_for_select(TaskCategory.all, :id, :category), { :class => "form-control", :placeholder => "Placeholder", required: "required" }) %>
+          <%= form.label "Category or department" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field form-floating mb-3 col-6">
+          <%= form.select(:quater, options_for_select([["Personal", 0], ["Q1", 1], ["Q2", 2], ["Q3", 3], ["Q4", 4]]), {}, { class: "form-control", value: BigRock.current_quater, placeholder: "Placeholder" }) %>
+          <%= form.label "Quater or type" %>
+        </div>
+
+        <div class="field form-floating mb-3 col-6">
+          <%= form.text_field :year, class: "form-control", value: Date.today.strftime("%Y").to_i, placeholder: "Placeholder" %>
+          <%= form.label :year %>
+        </div>
+      </div>
+
+      <div class="field form-floating mb-3">
+        <%= form.text_area :rock, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :rock %>
+      </div>
+
+      <div class="field form-floating mb-3">
+        <%= form.number_field :status, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :status %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-md btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

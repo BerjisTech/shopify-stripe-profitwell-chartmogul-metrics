@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2021-10-30 22:17:10
+  billing_period_start: 2021-10-30 22:17:10
+  billing_period_end: 2021-10-30 22:17:10
+  payment_duration: MyText
+  shop_name: MyText
+  shop_domain: MyText
+  shop_email: MyText
+  shop_country: MyString
+  details: MyText
+  charge_type: MyText
+  partner_sale: 1.5
+  shopify_fee: 1.5
+  processing_fee: 1.5
+  partner_share: 1.5
+  charge_id: MyText
+
+two:
+  date: 2021-10-30 22:17:10
+  billing_period_start: 2021-10-30 22:17:10
+  billing_period_end: 2021-10-30 22:17:10
+  payment_duration: MyText
+  shop_name: MyText
+  shop_domain: MyText
+  shop_email: MyText
+  shop_country: MyString
+  details: MyText
+  charge_type: MyText
+  partner_sale: 1.5
+  shopify_fee: 1.5
+  processing_fee: 1.5
+  partner_share: 1.5
+  charge_id: MyText

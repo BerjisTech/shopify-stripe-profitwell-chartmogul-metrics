@@ -1,0 +1,38 @@
+<%= form_with(for: Task.new, class: "create_new_task_form") do |form| %>
+  <%= text_field :task, :task, class: "task_title", placeholder: "Task title here", required: "required" %>
+  <div class="task_form_extra_icons">
+    <label>
+      <span class="material-icons float-left is_priority_flag" title="Mark as priority">tour</span>
+      <%= hidden_field :task, :is_priority, value: 0 %>
+    </label>
+    <span class="px-2">ETA</span>
+    <%= form.date_field :deadline, title: "Deadline", class: "flex-spacer" %>
+    <%= form.submit "save", class: "btn-sm btn-blue", data: { disable_with: false } %>
+  </div>
+  <div class="description">
+    <%= form.rich_text_area :description, placeholder: "Task description here", required: "required" %>
+  </div>
+  <div class="type_and_category">
+    <div class="task_requester">
+      <span>Task Requester</span>
+      <%= select_tag(:assigned_by, options_from_collection_for_select(Account.all, :user_id, :first_name), { prompt: "Assigner?" }) %>
+    </div>
+    <div class="task_owner">
+      <span>Task Owner</span>
+      <%= select_tag(:assigned_to, options_from_collection_for_select(Account.all, :user_id, :first_name), { prompt: "Assign to?" }) %>
+    </div>
+    <div class="task_type">
+      <span>Task Type</span>
+      <%= select_tag(:task_type, options_from_collection_for_select(TaskType.all, :id, :name), { prompt: "Type?" }) %>
+    </div>
+    <div class="task_category">
+      <span>Task Category</span>
+      <%= select_tag(:category, options_from_collection_for_select(TaskCategory.all, :id, :category), { prompt: "Category?" }) %>
+    </div>
+    <div class="task_category">
+      <span>App?</span>
+      <%= select_tag(:app_id, options_from_collection_for_select(App.all.order(created_at: :asc), :id, :app_name), { prompt: "App?" }) %>
+    </div>
+  </div>
+  <%= form.text_field :resources, class: "resources", placeholder: "Paste a link to git, drive, codepen etc" %>
+<% end %>

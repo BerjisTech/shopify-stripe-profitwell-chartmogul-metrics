@@ -1,0 +1,54 @@
+<script>
+  $('.request_content_form').on('submit', (e) => {
+    e.preventDefault()
+    $.ajax({
+        url: '<%= ajax_request_url %>',
+        method: 'POST',
+        data: $('.request_content_form').serialize(),
+        success: (response) => {
+            console.log(response)
+            $('[name*="request"]').val('')
+            inform('Request succesfully added', 'Info')
+            load_requests()
+        },
+        error: (error) => {
+            console.log(error)
+            inform(error, 'Error')
+        }
+    })
+  })
+  
+  const load_requests = () => {
+    $('.request_block').remove()
+    $('<img class="da_image" src="https://assets.ltvsaasgrowth.com/images/loader-1.gif" />').insertAfter('.request_content_form')
+    $.ajax({
+        url: '<%= "#{root_url}request/fetch/#{@account.user_id}" %>',
+        method: 'GET',
+        success: (requests) => {
+            $('.da_image').remove()
+            $(requests).insertAfter('.request_content_form')
+        }
+    })
+  }
+  
+  const updaterequest = (request, state) => {
+    $.ajax({
+        url: `<%= root_url %>request/update`,
+        data: {
+            'authenticity_token': $('[name="csrf-token"]')[0].content,
+            'request': request,
+            'state': state
+        },
+        method: 'POST',
+        success: (requests) => {
+            load_requests()
+        }
+    })
+  }
+  
+  $('[name="request[description]"]').keydown(function (event) {
+    if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+        $('.request_content_form').trigger('submit')
+    }
+  });
+</script>

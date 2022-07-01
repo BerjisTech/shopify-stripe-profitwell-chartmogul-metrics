@@ -1,0 +1,27 @@
+<table class="table table-hover table-bordered metrics_table" style="table-layout:fixed;">
+  <tr>
+    <% (0...30).map do |days| %>
+      <td width="150"><%= (Date.today - days).strftime("%d-%m-%Y") %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% (0...30).map do |days| %>
+      <td width="150"><%= Review.where(user_id: @account.user_id, requested_on: (Date.today - days).strftime("%d-%m-%Y"), level: 1).count %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% (0...30).map do |days| %>
+      <td width="150"><%= Review.where(user_id: @account.user_id, received_on: (Date.today - days).strftime("%d-%m-%Y"), level: 2).count %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% (0...30).map do |days| %>
+      <td width="150"><%= Chat.where(user_id: @account.user_id, date: (Date.today - days).strftime("%d-%m-%Y")).count %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% (0...30).map do |days| %>
+      <td width="150"><%= Call.where(user_id: @account.user_id, date: (Date.today - days).strftime("%d-%m-%Y")).count %></td>
+    <% end %>
+  </tr>
+</table>

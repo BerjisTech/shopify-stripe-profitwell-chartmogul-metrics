@@ -1,0 +1,14 @@
+<% @tasks.map do |task| %>
+  <div class="task_block">
+    <% timer = OpenStruct.new Task.deadline(task.done, task.deadline) %>
+    <%= timer.icon.html_safe %>
+    <span>
+      <strong><%= task.task %> </strong><br />
+      <sup><code>(<%= "Assigned by #{Account.find_by(user_id: task.assigned_by).first_name}" %>)</code> <%= App.tag(task.app_id).html_safe %></sup>
+    </span>
+    <span class="btn-sm btn-blue mx-2">
+      Start
+    </span>
+    <%= timer.days_remaining.html_safe %>
+  </div>
+<% end %>

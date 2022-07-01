@@ -1,0 +1,31 @@
+<div id="donut-chart-demo" class="morrischart" style="height: 200px;">
+</div>
+<script>
+  jQuery(document).ready(($) => {
+    var donut_chart_demo = $("#donut-chart-demo");
+    donut_chart_demo.parent().show();
+    var donut_chart = Morris.Donut({
+        element: 'donut-chart-demo',
+        data: [
+            <% @my_apps_mrr.map do |mrr| %>
+                <% app = OpenStruct.new mrr %>
+                <% app_amount = if (app.amount.present? && app.amount > 0)
+                       app.amount
+                     else
+                       0
+                     end %>
+                {
+                    label: "<%= app.name %>",
+                    value: <%= app_amount.round(2) %>
+                },
+            <% end %>
+        ],
+        colors: ['#E0AE76', '#5077E5', '#45C2DC']
+    });
+    donut_chart_demo.parent().attr('style', '');
+  })
+  
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>

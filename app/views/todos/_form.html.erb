@@ -1,0 +1,32 @@
+<%= form_with(model: todo) do |form| %>
+  <% if todo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+        <% todo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+     <%= select_tag("todo[user_id]", options_from_collection_for_select(Account.all, :user_id, :first_name), { :class => "form-control", :placeholder => "Placeholder" }) %>
+      <%= form.label :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_do %>
+    <%= form.rich_text_area :to_do %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.text_field :deadline %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

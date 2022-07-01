@@ -1,0 +1,18 @@
+<h1>Apis <small style="font-size: 13px !important;"><%= link_to "New Api", new_api_path %></small></h1>
+<div class="row">
+  <% @apis.each do |api| %>
+    <div class="col-md-4 p-1">
+      <span class="card m-1 p-2">
+        <span><%= App.find(api.app_id).tag %> <%= link_to "edit", edit_api_path(api), class: "material-icons" %></span>
+        <span>API: <%= api.name %></span>
+        <span>Key: <%= api.key %></span>
+        <span>Secret: <%= api.secret %></span>
+        <span>Password: <%= api.password %></span>
+        <span>Secondary: <%= api.secondary %></span>
+        <span>End Point: <%= api.endpoint %></span>
+        <span>Partner Id: <%= api.partner_id %></span>
+        <span>App code: <%= api.app_code %></span>
+      </span>
+    </div>
+  <% end %>
+</div>

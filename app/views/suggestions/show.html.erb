@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @suggestion.user_id %>
+</p>
+
+<p>
+  <strong>App:</strong>
+  <%= @suggestion.app_id %>
+</p>
+
+<p>
+  <strong>Suggestion:</strong>
+  <%= @suggestion.suggestion %>
+</p>
+
+<%= link_to "Edit", edit_suggestion_path(@suggestion) %> |
+<%= link_to "Back", suggestions_path %>

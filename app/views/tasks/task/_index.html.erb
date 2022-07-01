@@ -1,0 +1,37 @@
+<% @tasks.each_with_index.map do |task| %>
+  <div class="task_block ui-state-default" id="<%= task.id %>">
+    <div class="task_title get_task_details">
+      <span onclick="load_task_decsription('<%= task.id %>')">
+        <strong><%= task.task %> </strong>
+        <% if task.app_id.present? && task.app_id.to_i.positive? %>
+          <sup><%= App.tag(task.app_id).html_safe %></sup>
+        <% end %>
+      </span>
+      <span class="material-icons close_details_<%= task.id %>" style="display: none; font-size: 10px;" onclick="$('.task_details_<%= task.id %>').html('');$(this).hide()">close</span>
+      <%= "<span class=\"btn-sm btn-blue mx-2\" onclick=\"update_task('#{task.id}','start')\">Start</span>".html_safe if TaskStage.find(task.stage).stage == "Open" && (task.assigned_to == current_user.id || task.assigned_to.nil?) %>
+
+      <%= "<span class=\"btn-sm btn-orange mx-2\" onclick=\"update_task('#{task.id}','pause')\">Pause</span>".html_safe if TaskStage.find(task.stage).stage == "Ongoing" && task.assigned_to == current_user.id && task.state == 0 %>
+      <%= "<code class=\"text-info\">[paused]</code><span class=\"btn-sm btn-info text-white mx-2\" onclick=\"update_task('#{task.id}','resume')\">Resume</span>".html_safe if TaskStage.find(task.stage).stage == "Ongoing" && task.assigned_to == current_user.id && task.state == 2 %>
+      <%= "<span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','submit')\">Submit</span>".html_safe if TaskStage.find(task.stage).stage == "Ongoing" && task.assigned_to == current_user.id && task.state == 0 %>
+
+      <%= "<code class=\"text-info\">[pending]</code><span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','test')\">Test</span>".html_safe if TaskStage.find(task.stage).stage == "Feedback" && task.assigned_to == current_user.id && task.state == 0 %>
+      <%= "<code>[rejected]</code><span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','submit')\">Resubmit</span>".html_safe if TaskStage.find(task.stage).stage == "Feedback" && task.assigned_to == current_user.id && task.state == 3 %>
+      <%= "<span class=\"btn-sm btn-red mx-2\" onclick=\"update_task('#{task.id}','reject')\">Reject</span>".html_safe if TaskStage.find(task.stage).stage == "Feedback" && task.assigned_to != current_user.id && task.state == 0 %>
+
+      <%= "<span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','review')\">Review</span>".html_safe if TaskStage.find(task.stage).stage == "Testing" && task.assigned_to == current_user.id && task.state == 0 %>
+      <%= "<code>[rejected]</code><span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','test')\">Review</span>".html_safe if TaskStage.find(task.stage).stage == "Testing" && task.assigned_to == current_user.id && task.state == 3 %>
+      <%= "<span class=\"btn-sm btn-red mx-2\" onclick=\"update_task('#{task.id}','reject')\">Reject</span>".html_safe if TaskStage.find(task.stage).stage == "Testing" && task.assigned_to != current_user.id && task.state == 0 %>
+
+      <%= "<span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','document')\">Document</span>".html_safe if TaskStage.find(task.stage).stage == "Review" && task.state == 0 %>
+      <%= "<code>[rejected]</code><span class=\"btn-sm btn-green mx-2\" onclick=\"update_task('#{task.id}','review')\">Re-document</span>".html_safe if TaskStage.find(task.stage).stage == "Review" && task.state == 3 %>
+      <%= "<span class=\"btn-sm btn-red mx-2\" onclick=\"update_task('#{task.id}','reject')\">Reject</span>".html_safe if TaskStage.find(task.stage).stage == "Review" && task.assigned_to != current_user.id && task.state == 0 %>
+
+      <%= "<span class=\"btn-sm btn-blue mx-2\" onclick=\"update_task('#{task.id}','close')\">Close</span>".html_safe if TaskStage.find(task.stage).stage == "Documentation" && task.state == 0 %>
+
+      <span>
+        <%= check_box :task, :id %>
+      </span>
+    </div>
+    <div class="task_details_<%= task.id %>"></div>
+  </div>
+<% end %>

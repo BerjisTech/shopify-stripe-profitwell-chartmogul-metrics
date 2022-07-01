@@ -1,0 +1,36 @@
+<%= form_with(model: daily_count) do |form| %>
+  <% if daily_count.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(daily_count.errors.count, "error") %> prohibited this daily_count from being saved:</h2>
+
+      <ul>
+        <% daily_count.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-sm-6">
+    <%= form.number_field :app_id, value: session[:current_app], type: :hidden %>
+
+    <div class="field form-group">
+      <%= form.number_field :user_count, class: "form-control", required: "required" %>
+      <%= form.label :user_count %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :date %>
+      <%= form.datetime_select :date, class: "form-control", required: "required" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.number_field :plan_id, class: "form-control", required: "required" %>
+      <%= form.label :plan_id %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

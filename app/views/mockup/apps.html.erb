@@ -1,0 +1,63 @@
+<div class="row m-3">
+  <div class="col-sm-3">
+    <div class="h3">Add A New App</div>
+    <hr />
+    <div>
+      Use this form to add a new app you own or are managing. 
+      If the app has already been added to a different account, 
+      kindly send a collaboration request or if you're the owner 
+      send a transfer request. Make sure all the fields are filled 
+      to avoid poor data updates.
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <form >
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group form-floating mb-2">
+            <input type="text" class="form-control" name="app_name" placeholder="App Name" />
+            <label for="app_name">App Name</label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary form-control">Add App</button>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="form-group form-floating mb-2">
+            <input type="text" class="form-control" name="gross_endpoint" placeholder="gross_endpoint" />
+            <label for="gross_endpoint">Running Data Endpoint</label>
+          </div>
+          <div class="form-group form-floating mb-2">
+            <input type="text" class="form-control" name="partner_id" placeholder="partner_id" />
+            <label for="partner_id">Partner ID</label>
+          </div>
+          <div class="form-group form-floating mb-2">
+            <input type="text" class="form-control" name="app_id" placeholder="app_id" />
+            <label for="app_id">App ID</label>
+          </div>
+          <div class="form-group form-floating mb-2">
+            <input type="text" class="form-control" name="partner_key" placeholder="partner_key" />
+            <label for="partner_key">Partner API Key</label>
+          </div>
+          <div class="form-group form-floating mb-2">
+            <input type="text" class="form-control" name="partner_secret" placeholder="partner_secret" />
+            <label for="partner_secret">Partner API Secret</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row m-3">
+  <% App.mine(current_user.id).map do |my_app| %>
+    <% app = App.find(my_app.app_id) %>
+    <div class="col-sm-2">
+      <%= link_to app_path(app.id), class: "p-2 my-3 border shadow rounded d-flex flex-column nav-link", style: "text-decoration: none; color: #333333 !important;" do %>
+        <%= app.app_name %>
+        <hr />
+        <div class="fs-3">$<%= App.net_revenue(app.id) %></div>
+        <div style="font-size: 12px; color: #c0c0c0 !important;">Last update on <%= App.last_metric_update(app.id) %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

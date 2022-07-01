@@ -1,0 +1,36 @@
+<div class="col-6 col-xs-12 user_apps">
+  <div class="user_app_margin">
+    <div class="apps_section_top">
+      <span>My Apps (<%= @my_apps.count %>)</span>
+      <%= link_to tiles_path, class: "nav-link" do %>All Apps<em class="material-icons">chevron_right</em><% end %>
+    </div>
+    <div class="app_section_data">
+      <div class="mrr_data">
+        <div class="mrr_data_tab">
+          <span class="material-icons">addchart</span>
+          <div class="mrr_details">
+            <span>$ <%= @my_apps_numbers.mrr %></span>
+            <span>MRR</span>
+          </div>
+        </div>
+        <div class="mrr_data_tab">
+          <span class="material-icons">groups</span>
+          <div class="mrr_details">
+            <span><%= @my_apps_numbers.users %></span>
+            <span>Total users</span>
+          </div>
+        </div>
+        <div class="mrr_data_tab">
+          <span class="material-icons">group_add</span>
+          <div class="mrr_details">
+            <span>$ <%= @my_apps_numbers.trial %></span>
+            <span>In Trial</span>
+          </div>
+        </div>
+      </div>
+      <div class="pie_chart">
+        <%= render "dashboard/charts/doughnut" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<%= form_with(model: affiliate) do |form| %>
+  <% if affiliate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(affiliate.errors.count, "error") %> prohibited this affiliate from being saved:</h2>
+
+      <ul>
+        <% affiliate.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :app_id %>
+    <%= form.number_field :app_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :platform %>
+    <%= form.text_field :platform %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

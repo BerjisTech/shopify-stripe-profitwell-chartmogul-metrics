@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Metrics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mrr</th>
+      <th>Net revenue</th>
+      <th>Fees</th>
+      <th>Other revenue</th>
+      <th>Avg revenue per user</th>
+      <th>Arr</th>
+      <th>Ltv</th>
+      <th>Mrr growth rate</th>
+      <th>User churn</th>
+      <th>Revenue churn</th>
+      <th>Quick ratio</th>
+      <th>Active customers</th>
+      <th>New customers</th>
+      <th>Reactivations</th>
+      <th>New subscriptions</th>
+      <th>Active subscriptions</th>
+      <th>Upgrades</th>
+      <th>Downgrades</th>
+      <th>Churned customers</th>
+      <th>Coupons redeemed</th>
+      <th>Failed charges</th>
+      <th>Refunds</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @metrics.each do |metric| %>
+      <tr>
+        <td><%= metric.mrr %></td>
+        <td><%= metric.net_revenue %></td>
+        <td><%= metric.fees %></td>
+        <td><%= metric.other_revenue %></td>
+        <td><%= metric.avg_revenue_per_user %></td>
+        <td><%= metric.arr %></td>
+        <td><%= metric.ltv %></td>
+        <td><%= metric.mrr_growth_rate %></td>
+        <td><%= metric.user_churn %></td>
+        <td><%= metric.revenue_churn %></td>
+        <td><%= metric.quick_ratio %></td>
+        <td><%= metric.active_customers %></td>
+        <td><%= metric.new_customers %></td>
+        <td><%= metric.reactivations %></td>
+        <td><%= metric.new_subscriptions %></td>
+        <td><%= metric.active_subscriptions %></td>
+        <td><%= metric.upgrades %></td>
+        <td><%= metric.downgrades %></td>
+        <td><%= metric.churned_customers %></td>
+        <td><%= metric.coupons_redeemed %></td>
+        <td><%= metric.failed_charges %></td>
+        <td><%= metric.refunds %></td>
+        <td><%= link_to "Show", metric %></td>
+        <td><%= link_to "Edit", edit_metric_path(metric) %></td>
+        <td><%= link_to "Destroy", metric, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Metric", new_metric_path %>

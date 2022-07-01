@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Task Checklists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Item</th>
+      <th>Status</th>
+      <th>Added by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_checklists.each do |task_checklist| %>
+      <tr>
+        <td><%= task_checklist.task_id %></td>
+        <td><%= task_checklist.item %></td>
+        <td><%= task_checklist.status %></td>
+        <td><%= task_checklist.added_by %></td>
+        <td><%= link_to "Show", task_checklist %></td>
+        <td><%= link_to "Edit", edit_task_checklist_path(task_checklist) %></td>
+        <td><%= link_to "Destroy", task_checklist, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Task Checklist", new_task_checklist_path %>

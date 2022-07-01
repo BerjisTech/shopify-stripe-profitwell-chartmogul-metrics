@@ -1,0 +1,114 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mrr:</strong>
+  <%= @metric.mrr %>
+</p>
+
+<p>
+  <strong>Net revenue:</strong>
+  <%= @metric.net_revenue %>
+</p>
+
+<p>
+  <strong>Fees:</strong>
+  <%= @metric.fees %>
+</p>
+
+<p>
+  <strong>Other revenue:</strong>
+  <%= @metric.other_revenue %>
+</p>
+
+<p>
+  <strong>Avg revenue per user:</strong>
+  <%= @metric.avg_revenue_per_user %>
+</p>
+
+<p>
+  <strong>Arr:</strong>
+  <%= @metric.arr %>
+</p>
+
+<p>
+  <strong>Ltv:</strong>
+  <%= @metric.ltv %>
+</p>
+
+<p>
+  <strong>Mrr growth rate:</strong>
+  <%= @metric.mrr_growth_rate %>
+</p>
+
+<p>
+  <strong>User churn:</strong>
+  <%= @metric.user_churn %>
+</p>
+
+<p>
+  <strong>Revenue churn:</strong>
+  <%= @metric.revenue_churn %>
+</p>
+
+<p>
+  <strong>Quick ratio:</strong>
+  <%= @metric.quick_ratio %>
+</p>
+
+<p>
+  <strong>Active customers:</strong>
+  <%= @metric.active_customers %>
+</p>
+
+<p>
+  <strong>New customers:</strong>
+  <%= @metric.new_customers %>
+</p>
+
+<p>
+  <strong>Reactivations:</strong>
+  <%= @metric.reactivations %>
+</p>
+
+<p>
+  <strong>New subscriptions:</strong>
+  <%= @metric.new_subscriptions %>
+</p>
+
+<p>
+  <strong>Active subscriptions:</strong>
+  <%= @metric.active_subscriptions %>
+</p>
+
+<p>
+  <strong>Upgrades:</strong>
+  <%= @metric.upgrades %>
+</p>
+
+<p>
+  <strong>Downgrades:</strong>
+  <%= @metric.downgrades %>
+</p>
+
+<p>
+  <strong>Churned customers:</strong>
+  <%= @metric.churned_customers %>
+</p>
+
+<p>
+  <strong>Coupons redeemed:</strong>
+  <%= @metric.coupons_redeemed %>
+</p>
+
+<p>
+  <strong>Failed charges:</strong>
+  <%= @metric.failed_charges %>
+</p>
+
+<p>
+  <strong>Refunds:</strong>
+  <%= @metric.refunds %>
+</p>
+
+<%= link_to "Edit", edit_metric_path(@metric) %> |
+<%= link_to "Back", metrics_path %>

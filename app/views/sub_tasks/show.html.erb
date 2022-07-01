@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @sub_task.task %>
+</p>
+
+<p>
+  <strong>Assigned to:</strong>
+  <%= @sub_task.assigned_to %>
+</p>
+
+<p>
+  <strong>Assigned by:</strong>
+  <%= @sub_task.assigned_by %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @sub_task.deadline %>
+</p>
+
+<%= link_to "Edit", edit_sub_task_path(@sub_task) %> |
+<%= link_to "Back", sub_tasks_path %>

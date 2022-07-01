@@ -1,0 +1,25 @@
+
+
+<h1>Daily Counts</h1>
+
+<table class="table table-responsive table-hover">
+  <thead class="table-dark bg-dark">
+    <tr>
+      <th>App</th>
+      <th>User count</th>
+      <th>Date</th>
+      <th>Plan</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daily_counts.each do |daily_count| %>
+      <tr>
+        <td><%= daily_count.app_id %></td>
+        <td><%= daily_count.user_count %></td>
+        <td><%= daily_count.date %></td>
+        <td><%= daily_count.plan_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

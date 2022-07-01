@@ -1,0 +1,57 @@
+<div class="col-md-4 col-xs-12">
+  <div class="tile-stats tile-white stat-tile">
+    <h3>
+      <% if @mrr.empty? %>
+        No Paid MRR data
+      <% else %>
+        $ <%= @mrr.last.amount.round(2) || 0 %> in Paid MRR
+      <% end %>
+    </h3>
+
+    <p>
+      <% if @mrr.empty? %>
+        No Trial Mrr data
+      <% else %>
+        $ <%= @mrr.last.trial.round(2) || 0 %> in trial mrr data
+      <% end %>
+    </p>
+    <span class="monthly-sales"></span>
+  </div>
+</div>
+
+<div class="col-md-4 col-xs-12">
+  <div class="tile-stats tile-white stat-tile">
+    <h3>
+      <% if @users.empty? %>
+        No user data
+      <% else %>
+        <%= @users.first.total_count || 0 %>
+      <% end %>
+    </h3>
+
+    <p>
+      Users today
+    </p>
+    <span class="daily-visitors"></span>
+  </div>
+</div>
+
+<div class="col-md-4 col-xs-12">
+  <div class="tile-stats tile-white stat-tile">
+    <h3><%= @plans || 0 %> plans</h3>
+    <p>
+      <u>Plan comparison</u> <br />
+      <% @daily_count.map do |plan| %>
+        <% plan = OpenStruct.new plan %>
+        <% plan_amount = if (plan.amount.present? && plan.amount > 0)
+               plan.amount
+             else
+               0
+             end %>
+        <small><%= "#{plan.name}: $#{plan_amount.round(2) || 0}" %></small><br />
+      <% end %>
+    </p>
+
+    <span class="pie-chart plan-compare"></span>
+  </div>
+</div>

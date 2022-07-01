@@ -1,0 +1,29 @@
+
+
+<p>
+  <strong>App:</strong>
+  <%= @review.app_id %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user_id %>
+</p>
+
+<p>
+  <strong>Ticket:</strong>
+  <%= @review.ticket %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @review.comment %>
+</p>
+
+<%= link_to "Edit", edit_review_path(@review) %> |
+<%= link_to "Back", reviews_path %>

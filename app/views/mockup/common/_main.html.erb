@@ -1,0 +1,9 @@
+<div class="d-flex flex-column mockup">
+  <%= render "/mockup/common/header" %>
+  <div class="d-flex mockup-main">
+    <%= render "/mockup/common/nav" %>
+    <div class="mockup-content flex-grow-1">
+      <%= yield %>
+    </div>
+  </div>
+</div>

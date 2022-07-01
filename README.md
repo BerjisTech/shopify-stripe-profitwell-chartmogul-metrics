@@ -16,7 +16,7 @@ Ruby 3.0.1
 Clone the project locally.
 
 ``` shell
-$ git clone git@github.com:incartupsell/ltvsaasgrowth.git
+$ git clone https://github.com/BerjisTech/shopify-stripe-profitwell-chartmogul-metrics.git
 ```
 
 Switch to staging and pull
@@ -94,7 +94,7 @@ vi /etc/sudoers
 # add the following line at the bottom
 your_username  ALL=(ALL) NOPASSWD: ALL
 ```
-Once your user has ssh access to the droplet, check prometheus, the project is under /home/prometheus/ltvsaasgrowth (check /config/deploy.rb line 10)
+Once your user has ssh access to the droplet, check prometheus, the project is under /home/deploy_user/app_name (check /config/deploy.rb line 10)
 
 Create a PR against staging and request review from at least 3 members. The branch should have a staging server on heroku (or ngrok if it's something small) for testing purposes.
 Once everything is verified, the branch will be m,erged with main:master then deployed to production
